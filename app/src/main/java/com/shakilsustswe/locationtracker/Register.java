@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Register extends AppCompatActivity implements View.OnClickListener{
+public class Register extends AppCompatActivity {
 
     EditText useremail;
     EditText username;
@@ -20,7 +20,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // ini
+       /* // ini
         username = findViewById(R.id.register_activity_username);
         useremail = findViewById(R.id.register_activity_useremail);
         signinBtn = findViewById(R.id.register_activity_signin);
@@ -28,11 +28,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
         signupBtn.setOnClickListener(this::onClick);
-        signupBtn.setOnClickListener(this::onClick);
+        signupBtn.setOnClickListener(this::onClick);*/
 
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
         if(v.getId() == R.id.register_activity_signup)
             signup();
@@ -46,5 +46,5 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
     private void signin() {
         startActivity(new Intent(this, Login.class));
-    }
+    }*/
 }
