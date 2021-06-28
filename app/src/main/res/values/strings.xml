@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Project 250</string>
+    <string name="app_name">Location Tracker</string>
+    <string name="welcome_string">Find Out Your best Friend</string>
+    <string name="courtesy">Find Out Your best Friend</string>
 </resources>

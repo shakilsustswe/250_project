@@ -16,7 +16,9 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+       ////requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
