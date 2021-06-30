@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LocationTracker">
-        <activity android:name=".SettingActivity"></activity>
-        <!-- <activity android:name=".UserAdapter"></activity> -->
+        <activity android:name=".HomePage"></activity>
+        <activity android:name=".SettingActivity" /> <!-- <activity android:name=".UserAdapter"></activity> -->
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
