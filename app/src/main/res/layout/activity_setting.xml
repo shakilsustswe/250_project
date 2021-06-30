@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SettingActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/purple_500"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:fontFamily="@font/spartan_bold"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:text="Edit Profile"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            />
+
+        <ImageView
+            android:id="@+id/save"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="#515151"
+            android:padding="5dp"
+            android:src="@drawable/ic_baseline_save_alt_24"
+            app:tint="@color/white" />
+
+    </LinearLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setting_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_person_outline_24"
+        android:layout_marginBottom="20dp"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="2dp" />
+
+    <EditText
+        android:id="@+id/setting_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/profile_username_edit_shape"
+        android:fontFamily="@font/spartan_regular"
+        android:gravity="start"
+        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:text="User Name"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/setting_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/profile_username_edit_shape"
+        android:fontFamily="@font/spartan_thin"
+        android:gravity="start"
+        android:padding="10dp"
+        android:text="hey there i'm using this chat app\nWanna try this?"
+        android:textSize="10dp"
+        android:textStyle="normal" />
+
+
+</LinearLayout>
