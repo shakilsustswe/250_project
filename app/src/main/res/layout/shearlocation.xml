@@ -8,7 +8,42 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/shearlocation_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#ED653A"
+            android:text="Share"
+            android:textColor="#EDE1E1">
+
+        </Button>
+
+        <Button
+            android:id="@+id/shearlocation_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="#ED653A"
+            android:text="Cancel"
+            android:textColor="#EDE1E1">
+
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -36,42 +71,6 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="155dp"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
@@ -96,11 +95,5 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:text="Share Now"></Button>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

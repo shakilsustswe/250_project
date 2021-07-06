@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_page_menu_messege"
+        android:title="Messeage"/>
+    <item
+        android:id="@+id/home_page_menu_friendrequest"
+        android:title="Friend request"/>
+    <item
+        android:id="@+id/home_page_menu_myfriends"
+        android:title="My friends"/>
+    <item
+        android:id="@+id/home_page_menu_fiendfriends"
+        android:title="Find Friends"/>
+    <item
+        android:id="@+id/home_page_menu_profilesetting"
+        android:title="Setting profile"/>
+    <item
+        android:id="@+id/home_page_menu_logout"
+        android:title="Log out"/>
+    <item
+        android:id="@+id/home_page_menu_about"
+        android:title="Abouts"/>
+</menu>

@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/navigation_home"
         android:enabled="true"
         android:icon="@drawable/homeicon"
         android:title="Home"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/navigation_emergency"
         android:enabled="true"
         android:icon="@drawable/emergency"
         android:title="Emergency help"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/navigation_mylocation"
         android:enabled="true"
         android:icon="@drawable/location"
         android:title="My location"/>
     <item
-        android:id="@+id/page_4"
+        android:id="@+id/navigation_notification"
         android:enabled="true"
         android:icon="@drawable/notification"
         android:title="Notification"/>
+
+
 </menu>

@@ -51,6 +51,11 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // hiding action bar
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Registering...");
         progressDialog.setMessage("Please wait😴😴");
@@ -60,7 +65,7 @@ public class Register extends AppCompatActivity {
         email = findViewById(R.id.emailId);
         password = findViewById(R.id.passowrdId);
         confermpassword = findViewById(R.id.confermpasswordId);
-        signUpButton = findViewById(R.id.signupButtonId);
+        signUpButton = findViewById(R.id.shearlocation_share);
         signIn = findViewById(R.id.signInTextId);
         userImage = findViewById(R.id.profile_imageId);
 

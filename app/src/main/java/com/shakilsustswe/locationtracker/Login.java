@@ -41,6 +41,11 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // hiding action bar
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+
         //////progressDialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Login...");
@@ -80,6 +85,7 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +106,7 @@ public class Login extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
 
-                                        Intent intent = new Intent(Login.this, MainActivity.class);
+                                        Intent intent = new Intent(Login.this, HomePage.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                         finish();
