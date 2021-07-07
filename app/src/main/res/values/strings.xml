@@ -4,4 +4,6 @@
     <string name="courtesy">From Shakil And Fahim</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_friend" >Find Friends</string>
+    <string name="profile_setting">Profile Setting</string>
 </resources>

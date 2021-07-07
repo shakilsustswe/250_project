@@ -9,10 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LocationTracker">
+        <activity android:name=".Friendlist"
 
-<!--        <activity android:name=".EmergencyHelp">-->
+            ></activity>
+        <activity android:name=".Alluserslist"
+            android:label="@string/find_friend"
+            android:parentActivityName="com.shakilsustswe.locationtracker.HomePage" >
+        </activity>
 
-<!--        </activity>-->
+        <!-- <activity android:name=".EmergencyHelp"> -->
+        <!-- </activity> -->
         <activity android:name=".HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingActivity" /> <!-- <activity android:name=".UserAdapter"></activity> -->
+
+        <activity android:name=".SettingActivity"
+            android:label="@string/profile_setting"
+            android:parentActivityName="com.shakilsustswe.locationtracker.HomePage" >
+            >
+        </activity>
+
+        <!-- <activity android:name=".UserAdapter"></activity> -->
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
