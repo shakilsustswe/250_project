@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -36,7 +37,8 @@ public class SettingActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
-    ImageView save;
+    Button save;
+    //ImageView save;
     Uri selctedImageUri;
     String email;
     ProgressDialog progressDialog;
@@ -58,7 +60,7 @@ public class SettingActivity extends AppCompatActivity {
         setting_image = findViewById(R.id.setting_image);
         setting_name = findViewById(R.id.setting_name);
         setting_status = findViewById(R.id.setting_status);
-        save = findViewById(R.id.save);
+        save = findViewById(R.id.profiles_setting_updatebtn);
 
         DatabaseReference reference = database.getReference().child("User").child(auth.getUid());
         StorageReference storageReference = storage.getReference().child("uplod").child(auth.getUid());

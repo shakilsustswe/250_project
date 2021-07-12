@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shakilsustswe.locationtracker">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/loc"
@@ -16,13 +13,13 @@
 <!--        <activity android:name=".EmergencyHelp">-->
 
 <!--        </activity>-->
-       <!-- <activity android:name=".HomePage">
+        <activity android:name=".HomePage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
         <activity android:name=".SettingActivity" /> <!-- <activity android:name=".UserAdapter"></activity> -->
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -34,7 +31,6 @@
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".HomePage"/>
     </application>
 
 </manifest>

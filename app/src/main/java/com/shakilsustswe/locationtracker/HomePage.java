@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -97,6 +98,7 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Adding friend request feature", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_fiendfriends:
+                findFriend();
                 Toast.makeText(getApplicationContext(), "Adding chatting friend list", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_profilesetting:
@@ -115,6 +117,12 @@ public class HomePage extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void findFriend() {
+        Intent intent = new Intent(getApplicationContext(), Alluserslist.class);
+        startActivity(intent,
+                ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     private void settingProfiles() {
