@@ -21,7 +21,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     Context mainActivity;
     ArrayList<Users> usersArrayList;
 
-    public UserAdapter(MainActivity mainActivity, ArrayList<Users> usersArrayList) {
+    public UserAdapter(Alluserslist mainActivity, ArrayList<Users> usersArrayList) {
         this.mainActivity = mainActivity;
         this.usersArrayList = usersArrayList;
     }
@@ -30,7 +30,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(mainActivity).inflate(R.layout.findfriends, parent, false);
+        View view = LayoutInflater.from(mainActivity).inflate(R.layout.activity_user_adapter, parent, false);///add user adapter
         return new MyViewHolder(view);
     }
 
@@ -61,19 +61,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-//        CircleImageView userImage;
+       CircleImageView userImage;
 //        TextView userName, userStatus;
-        ImageView userImage;
+       // ImageView userImage;
         TextView userName;
         TextView userStatus;
         ImageButton imageButtong;
 
         public MyViewHolder(@NonNull View itemView) {
+
             super(itemView);
-            userImage = itemView.findViewById(R.id.find_friend_userStatus);
-            userName = itemView.findViewById(R.id.find_friend_userName);
-            userStatus = itemView.findViewById(R.id.find_friend_userStatus);
-            itemView = itemView.findViewById(R.id.find_friend_addfriendBtn);
+            userImage = itemView.findViewById(R.id.userImageId);
+            userName = itemView.findViewById(R.id.usernameId);
+            userStatus = itemView.findViewById(R.id.statusId);
+
         }
     }
 }

@@ -20,7 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>-->
+
         <activity android:name=".HomePage"/>
+        <activity android:name=".Alluserslist"/>
         <activity android:name=".SettingActivity" /> <!-- <activity android:name=".UserAdapter"></activity> -->
         <activity android:name=".SplashScreen">
             <intent-filter>
