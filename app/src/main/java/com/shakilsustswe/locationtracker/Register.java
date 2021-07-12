@@ -41,6 +41,7 @@ public class Register extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     FirebaseStorage firebaseStorage;
     DatabaseReference databaseReference;
+    FirebaseUser firebaseUser;
     StorageReference storageReference;
     private static int RESULT_LOAD_IMAGE = 1;
 
@@ -73,10 +74,19 @@ public class Register extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
 
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        /////////check if user is null
+        if (firebaseUser != null) {
+            Intent intent = new Intent(Register.this, HomePage.class);
+            startActivity(intent);
+            finish();
+        }
+
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login.class));
+                startActivity(new Intent(Register.this,Login.class));
             }
         });
         signUpButton.setOnClickListener(new View.OnClickListener() {

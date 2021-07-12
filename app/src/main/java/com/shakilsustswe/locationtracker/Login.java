@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         /////////check if user is null
         if (firebaseUser != null) {
-            Intent intent = new Intent(Login.this, MainActivity.class);
+            Intent intent = new Intent(Login.this, HomePage.class);
             startActivity(intent);
             finish();
         }

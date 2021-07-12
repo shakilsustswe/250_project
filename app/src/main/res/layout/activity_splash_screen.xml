@@ -12,7 +12,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get's Strat..."
+        android:text="Get's Start..."
+        android:fontFamily="@font/spartan_regular"
+        android:textColor="#13E61C"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

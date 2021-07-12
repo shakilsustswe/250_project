@@ -113,7 +113,7 @@ public class SettingActivity extends AppCompatActivity {
 
                                                 progressDialog.dismiss();
                                                 Toast.makeText(SettingActivity.this, "Data Successfully Updated", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(SettingActivity.this, MainActivity.class));
+                                                startActivity(new Intent(SettingActivity.this, HomePage.class));
                                             } else {
                                                 progressDialog.dismiss();
                                                 Toast.makeText(SettingActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
@@ -138,7 +138,7 @@ public class SettingActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         progressDialog.dismiss();
                                         Toast.makeText(SettingActivity.this, "Data Successfully Updated", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
+                                        startActivity(new Intent(SettingActivity.this,HomePage.class));
                                     } else {
                                         progressDialog.dismiss();
                                         Toast.makeText(SettingActivity.this, "Something Went Wrong", Toast.LENGTH_SHORT).show();
