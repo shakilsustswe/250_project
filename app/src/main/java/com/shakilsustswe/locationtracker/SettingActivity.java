@@ -37,8 +37,7 @@ public class SettingActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
-    Button save;
-    //ImageView save;
+    ImageView save;
     Uri selctedImageUri;
     String email;
     ProgressDialog progressDialog;
@@ -60,7 +59,7 @@ public class SettingActivity extends AppCompatActivity {
         setting_image = findViewById(R.id.setting_image);
         setting_name = findViewById(R.id.setting_name);
         setting_status = findViewById(R.id.setting_status);
-        save = findViewById(R.id.profiles_setting_updatebtn);
+        save = findViewById(R.id.save);
 
         DatabaseReference reference = database.getReference().child("User").child(auth.getUid());
         StorageReference storageReference = storage.getReference().child("uplod").child(auth.getUid());
@@ -90,7 +89,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               progressDialog.show();
+                progressDialog.show();
 
                 String name = setting_name.getText().toString();
                 String status = setting_status.getText().toString();

@@ -188,7 +188,7 @@ public class Register extends AppCompatActivity {
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
                                                                 progressDialog.dismiss();
-                                                                startActivity(new Intent(Register.this, MainActivity.class));
+                                                                startActivity(new Intent(Register.this, HomePage.class));
                                                             } else {
                                                                 progressDialog.dismiss();
                                                                 Toast.makeText(Register.this, "Error in creating a new user account", Toast.LENGTH_SHORT).show();
@@ -208,7 +208,7 @@ public class Register extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
                                             progressDialog.dismiss();
-                                            startActivity(new Intent(Register.this, MainActivity.class));
+                                            startActivity(new Intent(Register.this,HomePage.class));
                                         } else {
                                             progressDialog.dismiss();
                                             Toast.makeText(Register.this, "Error in creating a new user account", Toast.LENGTH_SHORT).show();
