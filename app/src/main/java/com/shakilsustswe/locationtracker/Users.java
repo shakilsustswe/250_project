@@ -8,6 +8,7 @@ public class Users {
     public String status;
 
     public Users() {
+
     }
 
     public Users(String uid, String name, String email, String imageUri, String status) {

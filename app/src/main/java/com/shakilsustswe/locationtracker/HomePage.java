@@ -89,10 +89,13 @@ public class HomePage extends AppCompatActivity {
 
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.SHOW_ALL:
+                Alluser();
+                Toast.makeText(getApplicationContext(), "Adding Show all user feature", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.home_page_menu_messege:
-                Message();
                 Toast.makeText(getApplicationContext(), "Adding chatting feature", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_friendrequest:
@@ -121,10 +124,10 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void findFriend() {
-        Intent intent = new Intent(getApplicationContext(), Alluserslist.class);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+
+        startActivity(new Intent(getApplicationContext(),FindFriendActivity.class));
     }
-    private  void Message()
+    private  void Alluser()
     {
         startActivity(new Intent(getApplicationContext(),Alluserslist.class));
     }

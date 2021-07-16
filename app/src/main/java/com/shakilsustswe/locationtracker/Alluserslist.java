@@ -61,7 +61,7 @@ public class Alluserslist extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
        // userAdapter = new UserAdapter(Alluserslist.this, usersArrayList);
         recyclerView.setAdapter(userAdapter);
-        setTitle("Find Friends");
+        setTitle("All Users");
 
 
 
