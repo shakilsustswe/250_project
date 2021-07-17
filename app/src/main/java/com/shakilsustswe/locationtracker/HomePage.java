@@ -96,6 +96,7 @@ public class HomePage extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Adding Show all user feature", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_messege:
+                Messageing();
                 Toast.makeText(getApplicationContext(), "Adding chatting feature", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_friendrequest:
@@ -124,8 +125,11 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void findFriend() {
-
         startActivity(new Intent(getApplicationContext(),FindFriendActivity.class));
+    }
+    private void Messageing()
+    {
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
     private  void Alluser()
     {

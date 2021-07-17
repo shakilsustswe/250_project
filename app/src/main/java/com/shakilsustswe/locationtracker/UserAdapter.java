@@ -1,6 +1,7 @@
 package com.shakilsustswe.locationtracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.usersArrayList = usersArrayList;
     }
 
+    public UserAdapter(MainActivity mainActivity, ArrayList<Users> usersArrayList) {
+        this.mainActivity = mainActivity;
+        this.usersArrayList = usersArrayList;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,8 +48,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.userStatus.setText(users.status);
         /// Glide.with(mainActivity).load(users.getImageUri()).into(holder.userImage);
         Picasso.get().load(users.imageUri).into(holder.userImage);
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
+                   ///add item OnClickListener
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mainActivity, MessageActivity.class);
@@ -52,7 +58,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
                 intent.putExtra("reciverUid", users.getUid());
                 mainActivity.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override
