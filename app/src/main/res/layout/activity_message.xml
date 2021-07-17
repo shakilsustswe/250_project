@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".MessageActivity">
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_baseline_person_outline_24"
+            app:civ_border_color="#7e47f5"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/reciverName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/spartan_bold"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messageAdater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll3"
+        android:layout_below="@id/ll1"
+        android:layout_marginTop="-2dp"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:id="@+id/ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="2dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtMessage"
+            android:layout_width="255dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="7dp"
+            android:background="@drawable/message_box"
+            android:fontFamily="@font/spartan_regular"
+            android:hint="Type Your Messages..."
+            android:padding="10dp"
+            android:paddingStart="10dp"
+            android:textSize="10dp" />
+
+
+        <ImageView
+            android:id="@+id/sentBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="7dp"
+            android:src="@drawable/ic_baseline_send_24" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

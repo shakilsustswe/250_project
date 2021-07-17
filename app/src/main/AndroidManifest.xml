@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LocationTracker">
-        <activity android:name=".FindFriendActivity"></activity>
-        <!-- <activity android:name=".EmergencyHelp"> -->
+        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".FindFriendActivity" /> <!-- <activity android:name=".EmergencyHelp"> -->
         <!-- </activity> -->
         <!--
 <activity android:name=".HomePage">
