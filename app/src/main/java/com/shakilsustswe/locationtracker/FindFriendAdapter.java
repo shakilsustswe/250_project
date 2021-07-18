@@ -1,10 +1,12 @@
 package com.shakilsustswe.locationtracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,12 +21,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendAdapter.MyViewHolder> {
 
+
     public FindFriendAdapter(@NonNull FirebaseRecyclerOptions<Users> options) {
         super(options);
     }
+    FindFriendActivity findFriendActivity;
 
     Context mainActivity;
     ArrayList<Users> usersArrayList;
+
     @Override
    protected void onBindViewHolder(@NonNull MyViewHolder holder, int position,@NonNull Users Users) {
 
@@ -40,7 +45,18 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
         ///Glide.with(mainActivity).load(users.getImageUri()).into(holder.userImage);
         Picasso.get().load(Users.getImageUri()).into(holder.userImage);
 
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+
+                Intent intent = new Intent(FindFriendAdapter.this,ViewFriendActivity.class);
+                intent.putExtra("userKey",Users.getUid());
+                findFriendActivity.startActivity(intent);
+            }
+        });*/
+
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,11 +78,20 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
             userImage = itemView.findViewById(R.id.userImageId);
             userName = itemView.findViewById(R.id.usernameId);
             userStatus = itemView.findViewById(R.id.statusId);
+           /// itemView.setOnClickListener((View.OnClickListener) this);
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                Toast.makeText(v.getContext(), "position"+position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(),ViewFriendActivity.class);
+                v.getContext().startActivity(intent);
+            });
 
         }
+        
         public int getItemCount() {
             return usersArrayList.size();
         }
+        
     }
 
    /* Context mainActivity;

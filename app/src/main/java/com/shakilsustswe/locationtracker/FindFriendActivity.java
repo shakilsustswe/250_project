@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +43,7 @@ public class FindFriendActivity extends AppCompatActivity {
      protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_friend);
-        setTitle("");
+        setTitle("Find Friend");
 
         recview=(RecyclerView)findViewById(R.id.recycularViewId);
         recview.setLayoutManager(new LinearLayoutManager(this));
@@ -94,6 +95,7 @@ public class FindFriendActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
     private void processsearch(String s)
     {

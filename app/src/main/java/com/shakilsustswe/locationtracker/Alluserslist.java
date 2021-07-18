@@ -39,8 +39,6 @@ public class Alluserslist extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference().child("User");
 
 
-
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
