@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
     android:gravity="center"
-    android:background="#FFFFFF"
     tools:context=".Login">
 
     <LinearLayout
@@ -18,10 +18,10 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:textAlignment="center"
-            android:textColor="#4CAF50"
             android:layout_height="wrap_content"
             android:text="Welcome Back!!"
+            android:textAlignment="center"
+            android:textColor="#4CAF50"
             android:textSize="30sp"
             android:textStyle="bold">
 
@@ -34,7 +34,8 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColorHint="#020202" />
 
         <EditText
             android:id="@+id/activity_login_password"
@@ -43,7 +44,8 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="#000000" />
 
         <Button
             android:id="@+id/activity_login_login"
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/common_google_signin_btn_text_light"
-            android:backgroundTint="@color/ic_launcher_background"
+            android:backgroundTint="@android:color/holo_green_dark"
             android:text="Login"
             android:textColorHint="#DC2121"
             android:textColorLink="@color/ic_launcher_background" />
@@ -62,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Forget password" />
+            android:text="Forget password"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/textView2"
@@ -94,7 +97,8 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:padding="5dp"
-                android:text="New user?" />
+                android:text="New user?"
+                android:textColor="#0C0C0C" />
 
             <TextView
                 android:id="@+id/activity_login_signup"

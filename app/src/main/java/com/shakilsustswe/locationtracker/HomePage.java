@@ -54,7 +54,7 @@ public class HomePage extends AppCompatActivity {
                     selectedFragment = new EmergencyHelp();
                     break;
                 case R.id.navigation_mylocation:
-                    selectedFragment = new MyLocation();
+                    selectedFragment = new User_location();
                     break;
                 case R.id.navigation_notification:
                     selectedFragment = new Notification();
