@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -118,6 +119,7 @@ public class User_location extends Fragment implements
         searchingBtn = v.findViewById(R.id.fragment_user_location_searchingBtn);
         secDirection = v.findViewById(R.id.fragment_user_locationDirectionBtn);
 
+//        Places.initialize();
         searchingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -328,7 +330,4 @@ public class User_location extends Fragment implements
 
 
     }
-
-
-
 }

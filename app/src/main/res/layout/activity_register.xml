@@ -34,11 +34,11 @@
             app:civ_border_width="2dp" />
 
         <EditText
+            android:background="@android:drawable/edit_text"
             android:id="@+id/usernameId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#191C16"
             android:hint="Name"
             android:inputType="textPersonName"
             android:textCursorDrawable="@null"
@@ -47,11 +47,11 @@
         </EditText>
 
         <EditText
+            android:background="@android:drawable/edit_text"
             android:id="@+id/emailId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#191C16"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@null"
@@ -60,11 +60,11 @@
         </EditText>
 
         <EditText
+            android:background="@android:drawable/edit_text"
             android:id="@+id/passowrdId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#0F120E"
             android:hint="password"
             android:inputType="textPassword"
             android:textCursorDrawable="@null"
@@ -73,11 +73,11 @@
         </EditText>
 
         <EditText
+            android:background="@android:drawable/edit_text"
             android:id="@+id/confermpasswordId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="#0F120E"
             android:hint=" Conferm password"
             android:inputType="textPassword"
             android:textCursorDrawable="@null"

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,6 +39,8 @@ public class FindFriendActivity extends AppCompatActivity {
 
     RecyclerView recview;
     FindFriendAdapter adapter;
+    ArrayList<String> arrayList;
+    AlertDialog.Builder builder;
 
 
     @Override
@@ -55,6 +59,43 @@ public class FindFriendActivity extends AppCompatActivity {
 
         adapter=new FindFriendAdapter(options);
         recview.setAdapter(adapter);
+        arrayList = new ArrayList<>();
+
+        adapter.setOnAdapterInteractionListener(new FindFriendAdapter.onAdapterInteractionListener() {
+            @Override
+            public void onItemClick(String uid, String name) {
+                addFriend(uid, name);
+            }
+        });
+
+    }
+
+
+    // auther fahim 21, 07, 2021
+    private void addFriend(String uid, String name) {
+        builder = new AlertDialog.Builder(this);
+        builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Are you sure you want to add this contract on your friend list??")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+//                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
+
+                    }
+                });
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("Add " + name + "?");
+        alert.show();
+
     }
 
     @Override
@@ -110,188 +151,5 @@ public class FindFriendActivity extends AppCompatActivity {
 
     }
 
-    /*/*ArrayList<Users> usersArrayList;
-    FindFriendAdapter findFriendAdapter;
-    RecyclerView recyclerView;
-    FirebaseAuth auth;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;*/
 
-   /* private EditText mSearchField;
-    private ImageButton mSearchBtn;
-
-    private RecyclerView mResultList;
-
-    private DatabaseReference mUserDatabase;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_friend);
-
-        mUserDatabase = FirebaseDatabase.getInstance().getReference("Users");
-
-
-        mSearchField = (EditText) findViewById(R.id.search_field);
-        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
-
-        mResultList = (RecyclerView) findViewById(R.id.recycularViewId);
-        mResultList.setHasFixedSize(true);
-        mResultList.setLayoutManager(new LinearLayoutManager(this));
-
-        mSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String searchText = mSearchField.getText().toString();
-
-                firebaseUserSearch(searchText);
-
-            }
-        });
-
-
-        /*auth=FirebaseAuth.getInstance();
-        //firebaseDatabase=FirebaseDatabase.getInstance();
-
-        usersArrayList = new ArrayList<>();
-        recyclerView = findViewById(R.id.recycularViewId);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        FirebaseRecyclerOptions<Users> option = new FirebaseOptions.Builder<Users>()
-                .setQuery(FirebaseDatabase.getInstance().getReference().child("user"),Users.class)
-                .build();
-
-        // userAdapter = new UserAdapter(Alluserslist.this, usersArrayList);
-        findFriendAdapter = new FindFriendAdapter(option);
-        recyclerView.setAdapter(findFriendAdapter);
-        setTitle("FindFriend");
-*/
-
-        /*databaseReference = firebaseDatabase.getReference().child("User");
-
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Users users = dataSnapshot.getValue(Users.class);
-                    usersArrayList.add(users);
-                }
-                findFriendAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-      */
-
-   /* }
-    protected void firebaseUserSearch(String searchText) {
-
-        Toast.makeText(FindFriendActivity.this, "Started Search", Toast.LENGTH_LONG).show();
-
-        Query firebaseSearchQuery = mUserDatabase.orderByChild("name").startAt(searchText).endAt(searchText + "\uf8ff");
-
-        FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
-
-                Users.class,
-                R.layout.activity_user_adapter,
-                UsersViewHolder.class,
-                firebaseSearchQuery
-
-        ) {
-
-        };
-
-        mResultList.setAdapter(firebaseRecyclerAdapter);
-
-    }
-
-    public static class UsersViewHolder extends RecyclerView.ViewHolder {
-
-        View mView;
-
-        public UsersViewHolder(View itemView) {
-            super(itemView);
-
-            mView = itemView;
-
-        }
-
-        public void setDetails(Context ctx, String userName, String userStatus, String userImage){
-
-            TextView user_name = (TextView) mView.findViewById(R.id.usernameId);
-            TextView user_status = (TextView) mView.findViewById(R.id.statusId);
-            ImageView user_image = (ImageView) mView.findViewById(R.id.profile_image);
-
-
-            user_name.setText(userName);
-            user_status.setText(userStatus);
-
-            Picasso.get().load(userImage).into(user_image);
-
-            ///Picasso.get().load(image).into(setting_image);
-
-        }
-
-
-
-
-    }
-
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-       findFriendAdapter.startListening();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        findFriendAdapter.stopListening();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.search_bar,menu);
-
-        MenuItem item=menu.findItem(R.id.search);
-
-        SearchView searchView=(SearchView)item.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                processsearch(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                processsearch(s);
-                return false;
-            }
-        });
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private void processsearch(String s)
-    {
-        FirebaseRecyclerOptions<Users> options =
-                new FirebaseRecyclerOptions.Builder<Users>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("user").orderByChild("name").startAt(s).endAt(s+"\uf8ff"), Users.class)
-                        .build();
-
-        findFriendAdapter=new FindFriendAdapter(options);
-        findFriendAdapter.startListening();
-        recyclerView.setAdapter(findFriendAdapter);
-
-    }*/
 }

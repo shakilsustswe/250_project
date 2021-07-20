@@ -66,14 +66,6 @@ public class HomePage extends AppCompatActivity {
         }
     };
 
-//    @Override
-//    protected void onStart() {
-//        if(mAuth.getCurrentUser() == null){
-//            startActivity(new Intent(this, Login.class));
-//            finish();
-//        }
-//        super.onStart();
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -161,8 +153,5 @@ public class HomePage extends AppCompatActivity {
                 //Setting the title manually
                 alert.setTitle("Log Out?");
                 alert.show();
-            }
-
-
-
+    }
 }

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
     android:gravity="center"
     tools:context=".Login">
 
@@ -28,6 +27,7 @@
         </TextView>
 
         <EditText
+            android:background="@android:drawable/edit_text"
             android:id="@+id/activity_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +38,7 @@
             android:textColorHint="#020202" />
 
         <EditText
+            android:background="@android:drawable/edit_text"
             android:id="@+id/activity_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
