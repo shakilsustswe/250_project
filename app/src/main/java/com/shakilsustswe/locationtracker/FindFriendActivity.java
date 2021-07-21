@@ -1,6 +1,7 @@
 package com.shakilsustswe.locationtracker;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,8 +25,12 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +38,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -41,6 +49,12 @@ public class FindFriendActivity extends AppCompatActivity {
     FindFriendAdapter adapter;
     ArrayList<String> arrayList;
     AlertDialog.Builder builder;
+
+    // add friend
+    private DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
+
+    FirebaseUser firebaseUser;
 
 
     @Override
@@ -52,6 +66,11 @@ public class FindFriendActivity extends AppCompatActivity {
         recview=(RecyclerView)findViewById(R.id.recycularViewId);
         recview.setLayoutManager(new LinearLayoutManager(this));
 
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+
+
+        mAuth = FirebaseAuth.getInstance();
         FirebaseRecyclerOptions<Users> options =
                 new FirebaseRecyclerOptions.Builder<Users>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("User"), Users.class)
@@ -71,32 +90,89 @@ public class FindFriendActivity extends AppCompatActivity {
     }
 
 
-    // auther fahim 21, 07, 2021
+    // writer fahim 21, 07, 2021
+    // friend request add feature
     private void addFriend(String uid, String name) {
         builder = new AlertDialog.Builder(this);
-        builder = new AlertDialog.Builder(this);
 
-        builder.setMessage("Are you sure you want to add this contract on your friend list??")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-//                        finish();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //  Action for 'NO' Button
-                        dialog.cancel();
+        // handle if current uid it's your itself, so u can't sent friend request
+        if(uid.equals(firebaseUser.getUid().toString())){
+            builder.setMessage("Sorry U can't sent request itself");
+            builder.setTitle("Hellow, it is your own accound!!" );
+            builder.setCancelable(false)
+                    .setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        else{
+            builder.setMessage("Are you sure to add this contract on your friends list??")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            addFriendList(uid);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //  Action for 'NO' Button
+                            dialog.cancel();
 
-                    }
-                });
-        //Creating dialog box
-        AlertDialog alert = builder.create();
-        //Setting the title manually
-        alert.setTitle("Add " + name + "?");
-        alert.show();
+                        }
+                    });
+            //Creating dialog box
+            AlertDialog alert = builder.create();
+            //Setting the title manually
+            alert.setTitle("Add " + name + "?");
+            alert.show();
+        }
+
 
     }
+
+    // code write, fahim
+    private void addFriendList(String uid) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("FriendsList").child(firebaseUser.getUid());
+
+
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                // if already friend
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    if(snapshot.hasChild(uid)){
+                        Toast.makeText(FindFriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        databaseReference.child(uid).setValue("friend").addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
+
+    }
+
+
 
     @Override
     protected void onStart() {
@@ -150,6 +226,5 @@ public class FindFriendActivity extends AppCompatActivity {
         recview.setAdapter(adapter);
 
     }
-
 
 }

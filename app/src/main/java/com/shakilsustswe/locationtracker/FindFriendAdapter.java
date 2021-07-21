@@ -37,6 +37,8 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
     onAdapterInteractionListener onAdapterInteractionListener;
 
 
+    // method writer fahim, 21/july/2021
+    // inteact with find friend activity class
     public void setOnAdapterInteractionListener(FindFriendAdapter.onAdapterInteractionListener onAdapterInteractionListener) {
         this.onAdapterInteractionListener = onAdapterInteractionListener;
     }
@@ -89,6 +91,7 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
     }
 
 
+    // interface, writer fahim
     public interface onAdapterInteractionListener{
         void onItemClick(String uid, String name);
     }

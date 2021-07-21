@@ -74,15 +74,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="4"
-            android:ems="10"
-            android:padding="16dp"
-            android:drawablePadding="16dp"
+            android:background="@android:drawable/edit_text"
             android:drawableLeft="@drawable/location"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:gravity="center_vertical"
             android:hint="searching a place"
             android:inputType="textPersonName"
+            android:padding="16dp"
             android:textColor="#0B0A0A"
-            android:textStyle="bold"
-            android:background="@android:drawable/edit_text"/>
+            android:textStyle="bold" />
 
 
         <ImageButton
