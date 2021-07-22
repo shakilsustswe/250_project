@@ -77,34 +77,23 @@ public class HomePage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.SHOW_ALL:
-                Alluser();
-                Toast.makeText(getApplicationContext(), "Adding Show all user feature", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.home_page_menu_messege:
                 Messageing();
-                Toast.makeText(getApplicationContext(), "Adding chatting feature", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.home_page_menu_friendrequest:
-                Toast.makeText(getApplicationContext(), "Adding friend request feature", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_fiendfriends:
                 findFriend();
-                Toast.makeText(getApplicationContext(), "Adding chatting friend list", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_profilesetting:
                 settingProfiles();
-                Toast.makeText(getApplicationContext(), "Adding profiles setting", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home_page_menu_logout:
-                // tmr code copy koresiii.. hahahahahaha(from main activity theke)
                 logout();
                 break;
             case R.id.home_page_menu_myfriends:
-                Toast.makeText(getApplicationContext(), "Adding profiles setting", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomePage.this, MyfriendList.class));
                 break;
             case R.id.home_page_menu_about:
-                Toast.makeText(getApplicationContext(), "Adding profiles setting", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomePage.this, AboutThis.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -7,4 +7,34 @@
     <string name="find_friend">Find Friends</string>
     <string name="profile_setting">Profile Setting</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_about_this">AboutThis</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    // about this application
+    <string name="aboutThis">
+        Shahjalal University of Science and Technology, Sylhet
+        Dept of Software engineering
+        SWE 250 Project work II
+
+        Md fahim mia(2018831064)
+        Md sakil (2018831072)
+
+    </string>
+
+    <string-array name="may_type">
+        <item>NORMAL</item>
+        <item>HYBRID</item>
+        <item>NONE</item>
+        <item>SATELITIE</item>
+        <item>TERRAIN</item>
+
+    </string-array>
+
+    <string name="google_map_key">AIzaSyBsxrpR9LlEt049ey8cENoo-2G3N-qwztA</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

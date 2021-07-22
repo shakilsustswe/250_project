@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,6 +52,8 @@ public class FindFriendActivity extends AppCompatActivity {
     ArrayList<String> arrayList;
     AlertDialog.Builder builder;
 
+    private RelativeLayout rootLayout;
+
     // add friend
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
@@ -64,6 +68,7 @@ public class FindFriendActivity extends AppCompatActivity {
         setTitle("Find Friend");
 
         recview=(RecyclerView)findViewById(R.id.recycularViewId);
+        rootLayout = findViewById(R.id.activity_find_friend_rootLayout);
         recview.setLayoutManager(new LinearLayoutManager(this));
 
         mAuth = FirebaseAuth.getInstance();
@@ -99,6 +104,9 @@ public class FindFriendActivity extends AppCompatActivity {
         if(uid.equals(firebaseUser.getUid().toString())){
             builder.setMessage("Sorry U can't sent request itself");
             builder.setTitle("Hellow, it is your own accound!!" );
+            Snackbar snackbar = Snackbar
+                    .make(rootLayout, "Sorry, u can't add you", Snackbar.LENGTH_LONG);
+            snackbar.show();
             builder.setCancelable(false)
                     .setPositiveButton("Back", new DialogInterface.OnClickListener() {
                         @Override
@@ -152,13 +160,20 @@ public class FindFriendActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                     if(snapshot.hasChild(uid)){
-                        Toast.makeText(FindFriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
+                        Snackbar snackbar = Snackbar
+                                .make(rootLayout, "Already friend", Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                       // Toast.makeText(FindFriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
                     }
                     else{
                         databaseReference.child(uid).setValue("friend").addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
-
+                                if(task.isSuccessful()){
+                                    Snackbar snackbar = Snackbar
+                                            .make(rootLayout, "Sucessfully added", Snackbar.LENGTH_LONG);
+                                    snackbar.show();
+                                }
                             }
                         });
                     }
@@ -226,5 +241,4 @@ public class FindFriendActivity extends AppCompatActivity {
         recview.setAdapter(adapter);
 
     }
-
 }

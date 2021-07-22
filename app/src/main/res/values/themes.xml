@@ -14,8 +14,17 @@
         <!-- Customize your theme here. -->
 
 
-<!--        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>-->
-<!--        <item name="colorPrimary">@color/shrine_pink_100</item>-->
-<!--        <item name="colorOnPrimary">@color/shrine_pink_900</item>-->
+        <!--        <item name="bottomNavigationStyle">@style/Widget.MaterialComponents.BottomNavigationView.Colored</item>-->
+        <!--        <item name="colorPrimary">@color/shrine_pink_100</item>-->
+        <!--        <item name="colorOnPrimary">@color/shrine_pink_900</item>-->
     </style>
+
+    <style name="Theme.LocationTracker.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.LocationTracker.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.LocationTracker.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

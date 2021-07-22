@@ -18,6 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="Create Account"
             android:textSize="30sp"
             android:textStyle="bold">
@@ -25,20 +26,20 @@
         </TextView>
 
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_imageId"
             android:layout_width="96dp"
             android:layout_height="96dp"
+            android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_person_outline_24"
             app:civ_border_color="#FF000000"
             app:civ_border_width="2dp" />
 
         <EditText
-            android:background="@android:drawable/edit_text"
             android:id="@+id/usernameId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text"
             android:hint="Name"
             android:inputType="textPersonName"
             android:textCursorDrawable="@null"
@@ -47,11 +48,10 @@
         </EditText>
 
         <EditText
-            android:background="@android:drawable/edit_text"
             android:id="@+id/emailId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@null"
@@ -60,11 +60,10 @@
         </EditText>
 
         <EditText
-            android:background="@android:drawable/edit_text"
             android:id="@+id/passowrdId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text"
             android:hint="password"
             android:inputType="textPassword"
             android:textCursorDrawable="@null"
@@ -73,11 +72,10 @@
         </EditText>
 
         <EditText
-            android:background="@android:drawable/edit_text"
             android:id="@+id/confermpasswordId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:background="@android:drawable/edit_text"
             android:hint=" Conferm password"
             android:inputType="textPassword"
             android:textCursorDrawable="@null"
@@ -89,7 +87,6 @@
             android:id="@+id/shearlocation_share"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="#ED653A"
             android:text="Sign up"
             android:textColor="#EDE1E1">

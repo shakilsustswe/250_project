@@ -27,22 +27,20 @@
         </TextView>
 
         <EditText
-            android:background="@android:drawable/edit_text"
             android:id="@+id/activity_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:background="@android:drawable/edit_text"
             android:ems="10"
             android:hint="Email"
             android:inputType="textPersonName"
             android:textColorHint="#020202" />
 
         <EditText
-            android:background="@android:drawable/edit_text"
             android:id="@+id/activity_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:background="@android:drawable/edit_text"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"

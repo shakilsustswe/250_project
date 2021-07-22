@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/SHOW_ALL"
-        android:title="Show All"/>
+<!--    <item-->
+<!--        android:id="@+id/SHOW_ALL"-->
+<!--        android:title="Show All"/>-->
     <item
         android:id="@+id/home_page_menu_messege"
-        android:title="Messeage"/>
-    <item
-        android:id="@+id/home_page_menu_friendrequest"
-        android:title="Friend request"/>
+        android:title="Sent messeage"/>
+<!--    <item-->
+<!--        android:id="@+id/home_page_menu_friendrequest"-->
+<!--        android:title="Friend request"/>-->
     <item
         android:id="@+id/home_page_menu_myfriends"
         android:title="My friends"/>
