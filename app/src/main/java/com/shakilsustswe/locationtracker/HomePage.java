@@ -106,10 +106,7 @@ public class HomePage extends AppCompatActivity {
     {
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
-    private  void Alluser()
-    {
-        startActivity(new Intent(getApplicationContext(),Alluserslist.class));
-    }
+
 
     private void settingProfiles() {
         startActivity(new Intent(getApplicationContext(),SettingActivity.class));
