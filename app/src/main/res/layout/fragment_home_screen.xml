@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_home_screen_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Notification">
 
-
     <LinearLayout
+        android:layout_above="@id/user_location_shearing_permission"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,30 +20,39 @@
             android:id="@+id/fragment_home_addmeeting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
             android:clickable="true"
+            android:padding="5dp"
             android:src="@drawable/flaoting" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fragment_home_shearlocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:layout_weight="1"
             android:clickable="true"
+            android:padding="5dp"
             android:src="@drawable/sharelocation" />
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
+    <Switch
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/user_location_shearing_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Screen"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:text="Start Shearing "
+        android:textColor="@color/teal_200"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="3dp" />
 
-    </TextView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

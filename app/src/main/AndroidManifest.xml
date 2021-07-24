@@ -33,7 +33,7 @@
         <activity android:name=".ViewFriendActivity" />
         <activity
             android:name=".MessageActivity"
-            android:parentActivityName=".HomePage" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".FindFriendActivity"
             android:parentActivityName=".HomePage" /> <!-- <activity android:name=".EmergencyHelp"> -->
@@ -49,7 +49,9 @@
         </activity>
         <activity android:name=".Register" />
         <activity android:name=".Login" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".HomePage"
+            />
     </application>
 
 </manifest>

@@ -7,20 +7,29 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 
 public class HomeScreen extends Fragment implements View.OnClickListener {
 
 
+    private RelativeLayout rootLayout;
     private FloatingActionButton addmeeting;
     private FloatingActionButton shearlocation;
     private AlertDialog builder;
     private AlertDialog.Builder dialogbuilder;
+    private User_location user_location;
+
+    private Switch aSwitch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,8 +41,34 @@ public class HomeScreen extends Fragment implements View.OnClickListener {
                 false);
         addmeeting = v.findViewById(R.id.fragment_home_addmeeting);
         shearlocation = v.findViewById(R.id.fragment_home_shearlocation);
+        aSwitch = v.findViewById(R.id.user_location_shearing_permission);
+        rootLayout = v.findViewById(R.id.fragment_home_screen_root_layout);
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    aSwitch.setText("Stop Shearing");
+                    Snackbar snackbar = Snackbar
+                            .make(rootLayout, "Location Shearing Services Start, Successfully", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+                else{
+                    aSwitch.setText("Start Shearing");
+                    Snackbar snackbar = Snackbar
+                            .make(rootLayout, "Location Shearing Services Stop, Successfully", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+            }
+        });
+
+
+
         addmeeting.setOnClickListener((View.OnClickListener) this);
         shearlocation.setOnClickListener((View.OnClickListener) this);
+
+
+        user_location = new User_location();
         return v;
     }
 

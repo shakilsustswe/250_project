@@ -20,7 +20,7 @@
             android:layout_gravity="fill_horizontal"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
-            android:background="#ED653A"
+            android:background="@color/design_default_color_error"
             android:text="Share"
             android:textColor="#EDE1E1">
 
@@ -33,7 +33,7 @@
             android:layout_gravity="fill_horizontal"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
-            android:background="#ED653A"
+            android:background="@color/places_autocomplete_error_message"
             android:text="Cancel"
             android:textColor="#EDE1E1">
 
@@ -89,6 +89,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shearlocation_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

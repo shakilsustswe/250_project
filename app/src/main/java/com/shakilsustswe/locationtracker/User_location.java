@@ -47,6 +47,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
@@ -81,6 +87,12 @@ public class User_location extends Fragment implements
     private ImageButton searchingBtn;
     private ImageButton secDirection;
 
+    // save location
+    private FirebaseUser firebaseUser;
+    private FirebaseDatabase firebaseDatabase;
+    private FirebaseAuth mAuth;
+    private Task<Void> databaseReference;
+
 
     Spinner map_type;
 
@@ -103,6 +115,8 @@ public class User_location extends Fragment implements
             mMap.setTrafficEnabled(true);
             mMap.setIndoorEnabled(true);
             mMap.setBuildingsEnabled(true);
+
+
 
 
             //Initialize Google Play Services
@@ -147,6 +161,8 @@ public class User_location extends Fragment implements
         map_type.setAdapter(adapter);
 
 
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
 
         map_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -213,7 +229,6 @@ public class User_location extends Fragment implements
             mapFragment.getMapAsync(callback);
         }
     }
-
 
 
     @Override
@@ -400,6 +415,8 @@ public class User_location extends Fragment implements
             Toast.makeText(getContext(), "Please enter a location name", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 
 

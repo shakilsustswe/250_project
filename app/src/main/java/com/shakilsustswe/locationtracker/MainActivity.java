@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Chat with friend");
 
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
