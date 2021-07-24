@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         userAdapter = new UserAdapter(MainActivity.this, usersArrayList);
 
-        databaseReference = firebaseDatabase.getReference().child("User");
+        databaseReference = firebaseDatabase.getReference().child("FriendsList").child(auth.getUid());
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override

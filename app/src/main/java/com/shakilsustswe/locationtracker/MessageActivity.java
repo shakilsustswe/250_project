@@ -74,10 +74,6 @@ public class MessageActivity extends AppCompatActivity {
 
         sendBtn=findViewById(R.id.sentBtn);
         edtMessage=findViewById(R.id.edtMessage);
-       /* sendBtn = findViewById(R.id.sendBtn);
-        edtMessage = findViewById(R.id.edtMessage);
-        editcardView=findViewById(R.id.edit_cardviewId);
-        sendButton=findViewById(R.id.sendButtonId);*/
 
         Picasso.get().load(reciverImage).into(ReciverImage);
         ReciverName.setText("" + reciverName);
@@ -87,15 +83,20 @@ public class MessageActivity extends AppCompatActivity {
         senderRoom = senderUid + reciverUid;
         reciverRoom = reciverUid + senderUid;
 
-        DatabaseReference reference = database.getReference().child("User").child(firebaseAuth.getUid());
+        DatabaseReference reference = database.getReference().child("FriendsList").child(firebaseAuth.getUid());
         DatabaseReference chatRefrece = database.getReference().child("chats").child(senderRoom).child("messages");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try{
+                    sImage = snapshot.child("imageUri").getValue().toString();
+                    rImage = reciverImage;
+                }
+                catch (Exception e){
 
-                sImage = snapshot.child("imageUri").getValue().toString();
-                rImage = reciverImage;
+                }
+
 
             }
 

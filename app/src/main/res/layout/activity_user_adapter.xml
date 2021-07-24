@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@drawable/shape_user">
+    android:background="@drawable/common_google_signin_btn_icon_light_normal_background">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,7 +15,7 @@
             android:id="@+id/userImageId"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_margin="8dp"
+            android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_person_outline_24"
             app:civ_border_color="@color/black"
             app:civ_border_width="1dp" />
@@ -30,6 +30,7 @@
                 android:id="@+id/usernameId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_marginTop="15dp"
                 android:text="Name"
                 android:textColor="@color/black" />
@@ -38,6 +39,7 @@
                 android:id="@+id/statusId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_marginTop="5dp"
                 android:text="Status"
                 android:textColor="@color/black" />
@@ -45,5 +47,6 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 </RelativeLayout>
