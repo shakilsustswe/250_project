@@ -7,52 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".Notification">
 
-    <LinearLayout
-        android:layout_above="@id/user_location_shearing_permission"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_home_screen_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fragment_home_addmeeting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:padding="5dp"
-            android:src="@drawable/flaoting" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fragment_home_shearlocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:padding="5dp"
-            android:src="@drawable/sharelocation" />
-
-    </LinearLayout>
-
-    <Switch
-
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/user_location_shearing_permission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:padding="5dp"
-        android:text="Start Shearing "
-        android:textColor="@color/teal_200"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="3dp" />
 
 </RelativeLayout>

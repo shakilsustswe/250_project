@@ -31,7 +31,6 @@
         <item>NONE</item>
         <item>SATELITIE</item>
         <item>TERRAIN</item>
-
     </string-array>
 
     <string name="google_map_key">AIzaSyBsxrpR9LlEt049ey8cENoo-2G3N-qwztA</string>

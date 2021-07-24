@@ -89,7 +89,7 @@ public class User_location extends Fragment implements
 
     // save location
     private FirebaseUser firebaseUser;
-    private FirebaseDatabase firebaseDatabase;
+    private Task<Void> firebaseDatabase;
     private FirebaseAuth mAuth;
     private Task<Void> databaseReference;
 
@@ -234,6 +234,22 @@ public class User_location extends Fragment implements
     @Override
     public void onLocationChanged(@NonNull Location location) {
         lastLocation = location;
+
+        LocationHelper helper = new LocationHelper();
+        helper.setName("name");
+        helper.setLatitude(location.getLatitude());
+        helper.setLongitude(location.getLongitude());
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Location").child(firebaseUser.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Not", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         if(currentUserLocationMarker != null){
             currentUserLocationMarker.remove();
@@ -417,9 +433,10 @@ public class User_location extends Fragment implements
     }
 
 
-
-
-
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }
 
 

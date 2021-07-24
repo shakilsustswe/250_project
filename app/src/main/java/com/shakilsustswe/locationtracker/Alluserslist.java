@@ -61,7 +61,5 @@ public class Alluserslist extends AppCompatActivity {
         recyclerView.setAdapter(userAdapter);
         setTitle("All Users");
 
-
-
     }
 }

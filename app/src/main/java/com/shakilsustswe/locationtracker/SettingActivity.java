@@ -32,6 +32,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingActivity extends AppCompatActivity {
 
+    public EditText getSetting_name() {
+        return setting_name;
+    }
+
+    public void setSetting_name(EditText setting_name) {
+        this.setting_name = setting_name;
+    }
+
     CircleImageView setting_image;
     EditText setting_name, setting_status;
     FirebaseAuth auth;
