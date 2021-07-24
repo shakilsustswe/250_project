@@ -44,6 +44,9 @@ import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendActivity extends AppCompatActivity {
 
@@ -52,14 +55,19 @@ public class FindFriendActivity extends AppCompatActivity {
     ArrayList<String> arrayList;
     AlertDialog.Builder builder;
 
+
+   /// String person_name, person_email,status,imageURI;;
     private RelativeLayout rootLayout;
 
     // add friend
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference,friendsDatabase;
     private FirebaseAuth mAuth;
 
     FirebaseUser firebaseUser;
 
+
+    //CircleImageView profileImage;
+    //TextView name,status;
 
     @Override
      protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +83,12 @@ public class FindFriendActivity extends AppCompatActivity {
         firebaseUser = mAuth.getCurrentUser();
 
 
-        mAuth = FirebaseAuth.getInstance();
+        ///mAuth = FirebaseAuth.getInstance();
         FirebaseRecyclerOptions<Users> options =
                 new FirebaseRecyclerOptions.Builder<Users>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("User"), Users.class)
                         .build();
+
 
         adapter=new FindFriendAdapter(options);
         recview.setAdapter(adapter);
@@ -87,8 +96,8 @@ public class FindFriendActivity extends AppCompatActivity {
 
         adapter.setOnAdapterInteractionListener(new FindFriendAdapter.onAdapterInteractionListener() {
             @Override
-            public void onItemClick(String uid, String name) {
-                addFriend(uid, name);
+            public void onItemClick(String uid, String name,String imageUri,String status,String email) {
+                addFriend(uid, name,imageUri,status,email);
             }
         });
 
@@ -97,7 +106,8 @@ public class FindFriendActivity extends AppCompatActivity {
 
     // writer fahim 21, 07, 2021
     // friend request add feature
-    private void addFriend(String uid, String name) {
+    private void addFriend(String uid, String name,String imageUri,String status,String email) {
+
         builder = new AlertDialog.Builder(this);
 
         // handle if current uid it's your itself, so u can't sent friend request
@@ -124,20 +134,20 @@ public class FindFriendActivity extends AppCompatActivity {
             alert.show();
         }
         else{
-            builder.setMessage("Are you sure to add this contract on your friends list??")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            addFriendList(uid);
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //  Action for 'NO' Button
-                            dialog.cancel();
+            builder.setMessage("Are you sure to add this contract on your friends list??");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    addFriendList(uid, name,imageUri,status,email);
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //  Action for 'NO' Button
+                    dialog.cancel();
 
-                        }
-                    });
+                }
+            });
             //Creating dialog box
             AlertDialog alert = builder.create();
             //Setting the title manually
@@ -149,7 +159,13 @@ public class FindFriendActivity extends AppCompatActivity {
     }
 
     // code write, fahim
-    private void addFriendList(String uid) {
+    private void addFriendList(String uid, String name,String imageUri,String status,String email) {
+
+
+        //HashMap hashMap = new HashMap();
+       // hashMap.put("status","friend");
+       // hashMap.put("name",);
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("FriendsList").child(firebaseUser.getUid());
 
@@ -166,7 +182,13 @@ public class FindFriendActivity extends AppCompatActivity {
                        // Toast.makeText(FindFriendActivity.this, "Already friend", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        databaseReference.child(uid).setValue("friend").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        ///DatabaseReference friendUid=databaseReference.child(uid);
+
+
+
+                        Users users = new Users(uid,name,imageUri,status,email);
+
+                        databaseReference.child(uid).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
                                 if(task.isSuccessful()){

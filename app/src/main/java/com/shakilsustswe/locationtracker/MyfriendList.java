@@ -33,6 +33,7 @@ public class MyfriendList extends AppCompatActivity {
     ArrayList<String> allfriend;
     private String string;
     TextView textView;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,22 @@ public class MyfriendList extends AppCompatActivity {
         setContentView(R.layout.activity_myfriend_list);
         setTitle("Friend list");
 
-        string = new String();
+
+        recyclerView=findViewById(R.id.recycularViewId);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+    }
+}
+
+
+/*string = new String();
         allfriend = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
-        textView = findViewById(R.id.activity_my_friend_list_check);
 
+        ////textView = findViewById(R.id.activity_my_friend_list_check);
+        recyclerView= findViewById(R.id.recycularViewId);
         RetriveallData();
 
 
@@ -66,9 +77,4 @@ public class MyfriendList extends AppCompatActivity {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        });
-
-
-
-    }
-}
+        });*/

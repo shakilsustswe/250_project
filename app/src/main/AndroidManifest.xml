@@ -15,12 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LocationTracker">
-        <activity android:name=".AboutThis"
-            android:parentActivityName=".HomePage"
-            ></activity>
-        <activity android:name=".MyfriendList"
-            android:parentActivityName=".HomePage"
-            />
+        <activity android:name=".FriendsAdapter" />
+        <activity
+            android:name=".AboutThis"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".MyfriendList"
+            android:parentActivityName=".HomePage" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -30,12 +31,12 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".ViewFriendActivity" />
-        <activity android:name=".MessageActivity"
-            android:parentActivityName=".HomePage"
-            />
-        <activity android:name=".FindFriendActivity"
-            android:parentActivityName=".HomePage"
-            /> <!-- <activity android:name=".EmergencyHelp"> -->
+        <activity
+            android:name=".MessageActivity"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".FindFriendActivity"
+            android:parentActivityName=".HomePage" /> <!-- <activity android:name=".EmergencyHelp"> -->
         <activity android:name=".HomePage" />
         <activity android:name=".Alluserslist" />
         <activity android:name=".SettingActivity" /> <!-- <activity android:name=".UserAdapter"></activity> -->

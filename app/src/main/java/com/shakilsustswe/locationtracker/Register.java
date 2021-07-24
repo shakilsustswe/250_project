@@ -164,6 +164,7 @@ public class Register extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             Toast.makeText(Register.this, "success", Toast.LENGTH_SHORT).show();
+
                             FirebaseUser firebaseUser = auth.getCurrentUser();
 
                             //assert firebaseUser != null;

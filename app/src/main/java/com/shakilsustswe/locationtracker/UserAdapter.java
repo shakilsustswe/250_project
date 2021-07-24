@@ -32,6 +32,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.usersArrayList = usersArrayList;
     }
 
+    public UserAdapter(Friendlist mainActivity, ArrayList<Users> usersArrayList) {
+        this.mainActivity = mainActivity;
+        this.usersArrayList = usersArrayList;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

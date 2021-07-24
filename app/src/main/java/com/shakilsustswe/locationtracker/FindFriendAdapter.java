@@ -56,7 +56,7 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onAdapterInteractionListener.onItemClick(Users.getUid(), Users.getName());
+                onAdapterInteractionListener.onItemClick(Users.getUid(), Users.getName(),Users.getImageUri(),Users.getStatus(),Users.getEmail());
             }
         });
 
@@ -93,7 +93,7 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
 
     // interface, writer fahim
     public interface onAdapterInteractionListener{
-        void onItemClick(String uid, String name);
+        void onItemClick(String uid, String name,String imageUri,String status,String email);
     }
 
 
