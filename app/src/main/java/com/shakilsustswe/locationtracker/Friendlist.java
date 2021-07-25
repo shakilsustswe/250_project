@@ -51,6 +51,7 @@ public class Friendlist extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                usersArrayList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Users users = dataSnapshot.getValue(Users.class);
                     usersArrayList.add(users);
@@ -65,7 +66,7 @@ public class Friendlist extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycularViewId);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // userAdapter = new UserAdapter(Alluserslist.this, usersArrayList);
+        //userAdapter = new UserAdapter(Alluserslist.this, usersArrayList);
         recyclerView.setAdapter(userAdapter);
         setTitle("All Users");
 

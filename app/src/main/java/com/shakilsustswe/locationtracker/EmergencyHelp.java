@@ -4,11 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,27 +52,24 @@ public class EmergencyHelp extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        showallfriend(v);
-        return v;
-    }
-
-    private void showallfriend(View v) {
 
         usersArrayList = new ArrayList<>();
 
         userAdapter = new EmergencyHelpAdapter(getActivity(), usersArrayList);
 
-        databaseReference = firebaseDatabase.getReference().child("GetSheareLocation").child(auth.getUid());
+        databaseReference = firebaseDatabase.getReference().child("ShareLocation").child(auth.getUid());
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                usersArrayList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     LocationHelper users = dataSnapshot.getValue(LocationHelper.class);
                     usersArrayList.add(users);
                 }
                 userAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -85,9 +86,19 @@ public class EmergencyHelp extends Fragment {
         userAdapter.setOnAdapterInteractionListener(new EmergencyHelpAdapter.onAdapterInteractionListener() {
             @Override
             public void onItemClick(LocationHelper helper) {
-                Toast.makeText(getContext(), " " + helper.getLongitude() + helper.getLatitude(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity().getBaseContext(),
+                        AboutThis.class);
+                intent.putExtra("message", helper.getUid());
+                getActivity().startActivity(intent);
+
             }
         });
+
+        return v;
     }
+
+
+
 
 }

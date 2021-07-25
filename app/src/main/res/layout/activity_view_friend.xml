@@ -7,71 +7,34 @@
     android:gravity="center"
     tools:context=".ViewFriendActivity">
 
+
     <LinearLayout
-        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="-5dp"
-        android:gravity="center"
         android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_baseline_person_outline_24"
-            app:civ_border_color="#7e47f5"
-            app:civ_border_width="2dp" />
+        <TextView
+            android:id="@+id/test1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="TextView" />
 
         <TextView
-
-            android:id="@+id/UserNameId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/spartan_bold"
-            android:gravity="center"
-            android:text="User_Name"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@id/ll1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <Button
-            android:textStyle="bold"
-            android:id="@+id/sendRequestBtId"
-            android:text="send request"
+            android:id="@+id/test2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#7CD613">
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="TextView" />
 
-        </Button>
-
-        <Button
-            android:id="@+id/declainRequestBtId"
-            android:text="declain request"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
+        <TextView
+            android:id="@+id/test3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#9E075A">
-
-        </Button>
-
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="TextView" />
     </LinearLayout>
-
 </RelativeLayout>

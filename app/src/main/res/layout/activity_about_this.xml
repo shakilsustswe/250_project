@@ -7,11 +7,10 @@
     tools:context=".AboutThis">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/t"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="@string/aboutThis"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

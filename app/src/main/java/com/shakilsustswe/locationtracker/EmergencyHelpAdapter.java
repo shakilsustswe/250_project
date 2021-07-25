@@ -60,6 +60,7 @@ public class EmergencyHelpAdapter extends RecyclerView.Adapter<EmergencyHelpAdap
             @Override
             public void onClick(View v) {
                 onAdapterInteractionListener.onItemClick(users);
+
             }
         });
 

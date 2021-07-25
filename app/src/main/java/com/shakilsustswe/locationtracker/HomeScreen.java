@@ -170,6 +170,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
         mlocation = location;
         helper.setLongitude(location.getLongitude());
         helper.setLatitude(location.getLatitude());
+        helper.setUid(user.getUid());
 
         reference = FirebaseDatabase.getInstance().getReference().child("Location").child(user.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -183,18 +184,10 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
             }
         });
 
-
     }
 
 
-
-
-
     private void showallfriend(View v) {
-
-
-
-
 
         usersArrayList = new ArrayList<>();
 
@@ -228,24 +221,17 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
         userAdapter.setOnAdapterInteractionListener(new UserAdapter.onAdapterInteractionListener() {
             @Override
             public void onItemClick(String uid) {
-                Uid = uid;
-//                Handler handler = new Handler();
-//
-//                final Runnable r = new Runnable() {
-//                    public void run() {
-                        Task<Void> ref = FirebaseDatabase.getInstance().getReference().child("GetSheareLocation").child(Uid).child(user.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                if(task.isSuccessful()){
+                reference = FirebaseDatabase.getInstance().getReference().child("ShareLocation").child(uid).child(user.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        if(task.isSuccessful()){
 
-                                }
-                            }
-                        });
-//                        handler.postDelayed(this, 4000);
-//                    }
-//                };
-//                handler.postDelayed(r, 4000);
+                        }
+                        else{
 
+                        }
+                    }
+                });
             }
         });
 
@@ -275,7 +261,6 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
 
                 }
             });
-
 
     }
 

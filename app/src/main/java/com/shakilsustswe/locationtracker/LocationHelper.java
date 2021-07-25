@@ -3,10 +3,18 @@ package com.shakilsustswe.locationtracker;
 import android.widget.Toast;
 
 public class LocationHelper{
-    String name, email, status, imageUri;
+    String name, email, status, imageUri, uid;
     double latitude, longitude;
 
     public LocationHelper() {
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getName() {

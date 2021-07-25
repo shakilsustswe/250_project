@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -94,6 +95,7 @@ public class User_location extends Fragment implements
     private Task<Void> databaseReference;
 
 
+
     Spinner map_type;
 
 
@@ -115,6 +117,8 @@ public class User_location extends Fragment implements
             mMap.setTrafficEnabled(true);
             mMap.setIndoorEnabled(true);
             mMap.setBuildingsEnabled(true);
+
+
 
 
 
@@ -206,8 +210,6 @@ public class User_location extends Fragment implements
             }
         });
 
-
-
         return v;
     }
 
@@ -242,12 +244,7 @@ public class User_location extends Fragment implements
         firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Location").child(firebaseUser.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(getContext(), "Add", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getContext(), "Not", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 
