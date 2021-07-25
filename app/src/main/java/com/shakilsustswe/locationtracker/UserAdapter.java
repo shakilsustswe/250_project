@@ -29,15 +29,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
     Context mainActivity;
     ArrayList<Users> usersArrayList;
-
+    boolean check;
 
     onAdapterInteractionListener onAdapterInteractionListener;
     public void setOnAdapterInteractionListener(UserAdapter.onAdapterInteractionListener onAdapterInteractionListener) {
         this.onAdapterInteractionListener = onAdapterInteractionListener;
     }
-    public UserAdapter(Context mainActivity, ArrayList<Users> usersArrayList) {
+    public UserAdapter(Context mainActivity, ArrayList<Users> usersArrayList, boolean check) {
         this.mainActivity = mainActivity;
         this.usersArrayList = usersArrayList;
+        this.check = check;
     }
 
     public UserAdapter(MainActivity mainActivity, ArrayList<Users> usersArrayList) {
@@ -78,20 +79,26 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             }
         });
 
-        holder.aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) onAdapterInteractionListener.onItemClick(users.getUid().toString());
-                else{
-                    Task<Void> ref = FirebaseDatabase.getInstance().getReference().child("GetSheareLocation").child(users.getUid()).child(FirebaseAuth.getInstance().getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<Void> task) {
+        if(!check){
+            holder.aSwitch.setVisibility(View.INVISIBLE);
+        }
+        else{
+            holder.aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked) onAdapterInteractionListener.onItemClick(users.getUid().toString());
+                    else{
+                        Task<Void> ref = FirebaseDatabase.getInstance().getReference().child("Location").child(users.getUid()).child(FirebaseAuth.getInstance().getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<Void> task) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     @Override

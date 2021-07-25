@@ -191,7 +191,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
 
         usersArrayList = new ArrayList<>();
 
-        userAdapter = new UserAdapter(getActivity(), usersArrayList);
+        userAdapter = new UserAdapter(getActivity(), usersArrayList, true);
 
         databaseReference = firebaseDatabase.getReference().child("FriendsList").child(auth.getUid());
 
@@ -214,7 +214,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
 
         recyclerView = v.findViewById(R.id.fragment_home_screen_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        userAdapter = new UserAdapter(getActivity(), usersArrayList);
+        userAdapter = new UserAdapter(getActivity(), usersArrayList, true);
         recyclerView.setAdapter(userAdapter);
 
 

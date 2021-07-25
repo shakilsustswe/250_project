@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -61,6 +63,7 @@ public class MapsActivity2 extends FragmentActivity implements
         LocationListener
 {
 
+    private RelativeLayout rootLayout;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private GoogleMap mMap;
     private ActivityMaps2Binding binding;
@@ -80,7 +83,7 @@ public class MapsActivity2 extends FragmentActivity implements
     private double latitude;
     private double longitude;
 
-    private TextView textView;
+    private TextView textViewYou, textViewOthers;
 
     double a = 10, b = 10;
     private Spinner map_type;
@@ -101,8 +104,12 @@ public class MapsActivity2 extends FragmentActivity implements
             checkLocationPermission();
         }
 
-//        textView = findViewById(R.id.activity_map_2_text);
+
         map_type = findViewById(R.id.activity_maps_map_type);
+        rootLayout = findViewById(R.id.activity_maps2_root_layout);
+        textViewOthers = findViewById(R.id.activity_map_2_text_others);
+        textViewYou = findViewById(R.id.activity_map_2_text_you);
+
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
@@ -110,55 +117,54 @@ public class MapsActivity2 extends FragmentActivity implements
         Intent intent = getIntent();
         String message = intent.getStringExtra("uid");
 
-
+        if(message != null)
+            showLocation(message);
+        else{
+            Snackbar snackbar = Snackbar
+                    .make(rootLayout, "Having same networking problem", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
         mapType();
-
-        try{
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Location").child(message);
-
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String name = snapshot.child("name").getValue().toString();
-                    String  lat = snapshot.child("latitude").getValue().toString();
-                    String log = snapshot.child("longitude").getValue().toString();
-                    String image = snapshot.child("imageUri").getValue().toString();
-
-                    double a= Double.parseDouble(lat);
-                    double b= Double.parseDouble(log);
-                    try{
-                        textView.setText(name+ " : " +lat +" , " +log);
-                    }
-                    catch (Exception e){
-
-                    }
-
-
-                    MarkerOptions userMarkerOptions = new MarkerOptions();
-                    LatLng latLng = new LatLng(a,b);
-                    userMarkerOptions.position(latLng);
-                    userMarkerOptions.title(name);
-                    userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-
-                    mMap.clear();
-                    mMap.addMarker(userMarkerOptions);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-        catch (Exception e){
-
-        }
 
     }
 
+    private void showLocation(String uid) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Location").child(uid);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name = snapshot.child("name").getValue().toString();
+                String  lat = snapshot.child("latitude").getValue().toString();
+                String log = snapshot.child("longitude").getValue().toString();
+
+                if(name == null){
+                    name = "name";
+                }
+                double a= Double.parseDouble(lat);
+                double b= Double.parseDouble(log);
+
+                textViewOthers.setText(name+ " : " +lat +" , " +log);
+
+                mMap.clear();
+                MarkerOptions userMarkerOptions = new MarkerOptions();
+                LatLng latLng = new LatLng(a,b);
+                userMarkerOptions.position(latLng);
+                userMarkerOptions.title(name);
+                userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+                mMap.addMarker(userMarkerOptions);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
     @Override
@@ -179,9 +185,6 @@ public class MapsActivity2 extends FragmentActivity implements
         mMap.setTrafficEnabled(true);
         mMap.setIndoorEnabled(true);
         mMap.setBuildingsEnabled(true);
-
-
-
 
 
 
@@ -265,18 +268,7 @@ public class MapsActivity2 extends FragmentActivity implements
     @Override
     public void onLocationChanged(Location location) {
         lastLocation = location;
-
-        LocationHelper helper = new LocationHelper();
-        helper.setName("name");
-        helper.setLatitude(location.getLatitude());
-        helper.setLongitude(location.getLongitude());
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Location").child(firebaseUser.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-
-            }
-        });
-
+        textViewYou.setText("You :" + location.getLatitude() + " , " + location.getLongitude());
         if(currentUserLocationMarker != null){
             currentUserLocationMarker.remove();
         }

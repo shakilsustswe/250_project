@@ -34,7 +34,7 @@ public class Alluserslist extends AppCompatActivity {
 
         usersArrayList = new ArrayList<>();
 
-       userAdapter = new UserAdapter(Alluserslist.this, usersArrayList);
+       userAdapter = new UserAdapter(Alluserslist.this, usersArrayList, false);
 
         databaseReference = firebaseDatabase.getReference().child("User");
 
