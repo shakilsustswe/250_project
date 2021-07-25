@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,12 +42,13 @@ public class SettingActivity extends AppCompatActivity {
         this.setting_name = setting_name;
     }
 
+    LinearLayout rootLayout;
     CircleImageView setting_image;
     EditText setting_name, setting_status;
     FirebaseAuth auth;
     FirebaseDatabase database;
     FirebaseStorage storage;
-    ImageView save;
+    Button save;
     Uri selctedImageUri;
     String email;
     ProgressDialog progressDialog;
@@ -68,6 +71,13 @@ public class SettingActivity extends AppCompatActivity {
         setting_name = findViewById(R.id.setting_name);
         setting_status = findViewById(R.id.setting_status);
         save = findViewById(R.id.save);
+        rootLayout = findViewById(R.id.activity_setting_root_layout);
+
+
+        Snackbar snackbar = Snackbar
+                .make(rootLayout, "Click an invent to cheagne or modify", Snackbar.LENGTH_LONG);
+        snackbar.show();
+
 
         DatabaseReference reference = database.getReference().child("User").child(auth.getUid());
         StorageReference storageReference = storage.getReference().child("uplod").child(auth.getUid());

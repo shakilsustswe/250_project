@@ -8,15 +8,34 @@
     android:backgroundTint="@color/ic_launcher_background"
     android:backgroundTintMode="multiply">
 
+
     <TextView
-        android:layout_alignParentBottom="true"
-        android:id="@+id/activity_map_2_text"
+        android:id="@+id/activity_map_2_text_others"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/activity_map_2_text_you"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_above="@id/activity_map_2_text"
+        android:layout_above="@id/activity_map_2_text_others"
+        android:layout_below="@id/activity_maps_map_type"
         xmlns:map="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
@@ -24,5 +43,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MapsActivity2" />
+
+    <Spinner
+        android:id="@+id/activity_maps_map_type"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center" />
 
 </RelativeLayout>

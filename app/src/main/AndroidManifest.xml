@@ -58,7 +58,16 @@
             android:parentActivityName=".HomePage" /> <!-- <activity android:name=".EmergencyHelp"> -->
         <activity android:name=".HomePage" />
         <activity android:name=".Alluserslist" />
-        <activity android:name=".SettingActivity" /> <!-- <activity android:name=".UserAdapter"></activity> -->
+
+
+
+        // profile setting activity
+        <activity android:name=".SettingActivity"
+            android:parentActivityName=".HomePage"
+            android:label="Profile Setting"
+            />
+
+
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

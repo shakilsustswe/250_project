@@ -429,11 +429,6 @@ public class User_location extends Fragment implements
         }
     }
 
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 }
 
 
