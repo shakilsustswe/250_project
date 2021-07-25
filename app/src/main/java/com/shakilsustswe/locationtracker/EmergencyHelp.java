@@ -88,8 +88,8 @@ public class EmergencyHelp extends Fragment {
             public void onItemClick(LocationHelper helper) {
 
                 Intent intent = new Intent(getActivity().getBaseContext(),
-                        AboutThis.class);
-                intent.putExtra("message", helper.getUid());
+                        MapsActivity2.class);
+                intent.putExtra("uid", helper.getUid());
                 getActivity().startActivity(intent);
 
             }
