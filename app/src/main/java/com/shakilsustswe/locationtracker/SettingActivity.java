@@ -30,6 +30,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingActivity extends AppCompatActivity {
@@ -53,6 +57,13 @@ public class SettingActivity extends AppCompatActivity {
     String email;
     ProgressDialog progressDialog;
     private static int RESULT_LOAD_IMAGE = 1;
+
+
+    String finalImageUri;
+    String user_name;
+    String user_status;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +120,8 @@ public class SettingActivity extends AppCompatActivity {
 
                 progressDialog.show();
 
+
+
                 String name = setting_name.getText().toString();
                 String status = setting_status.getText().toString();
 
@@ -122,14 +135,16 @@ public class SettingActivity extends AppCompatActivity {
                             storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-                                    String finalImageUri = uri.toString();
+                                    finalImageUri = uri.toString();
+                                    user_name = name;
+                                    user_status = status;
                                     Users users = new Users(auth.getUid(), name, email, finalImageUri, status);
 
                                     reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-
+                                                updateLocationinfo();
                                                 progressDialog.dismiss();
                                                 Toast.makeText(SettingActivity.this, "Data Successfully Updated", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(SettingActivity.this, HomePage.class));
@@ -148,13 +163,16 @@ public class SettingActivity extends AppCompatActivity {
                     storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            String finalImageUri = uri.toString();
+                            finalImageUri = uri.toString();
+                            user_name = name;
+                            user_status = status;
                             Users users = new Users(auth.getUid(), name, email, finalImageUri, status);
 
                             reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        updateLocationinfo();
                                         progressDialog.dismiss();
                                         Toast.makeText(SettingActivity.this, "Data Successfully Updated", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(SettingActivity.this,HomePage.class));
@@ -184,6 +202,7 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -196,5 +215,11 @@ public class SettingActivity extends AppCompatActivity {
                 setting_image.setImageURI(selctedImageUri);
             }
         }
+    }
+
+    private void updateLocationinfo(){
+        Task<Void> firebaseDatabase1 = FirebaseDatabase.getInstance().getReference().child("Location").child(auth.getUid()).child("name").setValue(user_name);
+        Task<Void> firebaseDatabase2 = FirebaseDatabase.getInstance().getReference().child("Location").child(auth.getUid()).child("imageUri").setValue(user_status);
+        Task<Void> firebaseDatabase3 = FirebaseDatabase.getInstance().getReference().child("Location").child(auth.getUid()).child("satus").setValue(finalImageUri);
     }
 }

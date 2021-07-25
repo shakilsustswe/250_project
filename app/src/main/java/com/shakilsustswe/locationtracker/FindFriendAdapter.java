@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,7 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
         TextView userName;
         TextView userStatus;
         ///ImageButton imageButtong;
+        Switch aSwitch;
 
         public MyViewHolder(@NonNull View itemView) {
 
@@ -76,6 +78,8 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
             userImage = itemView.findViewById(R.id.userImageId);
             userName = itemView.findViewById(R.id.emergency_help_user_name);
             userStatus = itemView.findViewById(R.id.statusId);
+            aSwitch = itemView.findViewById(R.id.activity_user_apdater_location_switch);
+            aSwitch.setVisibility(View.INVISIBLE);
 
         }
         public int getItemCount() {

@@ -70,8 +70,6 @@ public class MapsActivity2 extends FragmentActivity implements
     private Location lastLocation;
     private Marker currentUserLocationMarker;
     private String provider;
-
-    // save location
     private FirebaseUser firebaseUser;
     private Task<Void> firebaseDatabase;
     private FirebaseAuth mAuth;
@@ -115,38 +113,50 @@ public class MapsActivity2 extends FragmentActivity implements
 
         mapType();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Location").child(message);
+        try{
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Location").child(message);
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String name = snapshot.child("name").getValue().toString();
-                String  lat = snapshot.child("latitude").getValue().toString();
-                String log = snapshot.child("longitude").getValue().toString();
-                String image = snapshot.child("imageUri").getValue().toString();
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String name = snapshot.child("name").getValue().toString();
+                    String  lat = snapshot.child("latitude").getValue().toString();
+                    String log = snapshot.child("longitude").getValue().toString();
+                    String image = snapshot.child("imageUri").getValue().toString();
 
-                double a= Double.parseDouble(lat);
-                double b= Double.parseDouble(log);
-                textView.setText(name+ " : " +lat +" , " +log);
+                    double a= Double.parseDouble(lat);
+                    double b= Double.parseDouble(log);
+                    try{
+                        textView.setText(name+ " : " +lat +" , " +log);
+                    }
+                    catch (Exception e){
 
-                MarkerOptions userMarkerOptions = new MarkerOptions();
-                LatLng latLng = new LatLng(a,b);
-                userMarkerOptions.position(latLng);
-                userMarkerOptions.title(name);
-                userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+                    }
 
-                mMap.clear();
-                mMap.addMarker(userMarkerOptions);
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
-            }
+                    MarkerOptions userMarkerOptions = new MarkerOptions();
+                    LatLng latLng = new LatLng(a,b);
+                    userMarkerOptions.position(latLng);
+                    userMarkerOptions.title(name);
+                    userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    mMap.clear();
+                    mMap.addMarker(userMarkerOptions);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 
-            }
-        });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+        catch (Exception e){
+
+        }
+
     }
 
 
