@@ -62,7 +62,7 @@ public class Register extends AppCompatActivity {
         progressDialog.setMessage("Please wait😴😴");
         progressDialog.setCancelable(false);
 
-        username = findViewById(R.id.usernameId);
+        username = findViewById(R.id.emergency_help_user_name);
         email = findViewById(R.id.emailId);
         password = findViewById(R.id.passowrdId);
         confermpassword = findViewById(R.id.confermpasswordId);

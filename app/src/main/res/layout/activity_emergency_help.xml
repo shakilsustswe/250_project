@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".EmergencyHelp">
 
-    <TextView
-        android:id="@+id/EmergencyHelp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Emergency Help"
-        android:textSize="24sp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_emergency_help_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

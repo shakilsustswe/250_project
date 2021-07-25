@@ -32,10 +32,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
 
     onAdapterInteractionListener onAdapterInteractionListener;
-
-
-    // method writer fahim, 21/july/2021
-    // inteact with find friend activity class
     public void setOnAdapterInteractionListener(UserAdapter.onAdapterInteractionListener onAdapterInteractionListener) {
         this.onAdapterInteractionListener = onAdapterInteractionListener;
     }
@@ -116,7 +112,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
             super(itemView);
             userImage = itemView.findViewById(R.id.userImageId);
-            userName = itemView.findViewById(R.id.usernameId);
+            userName = itemView.findViewById(R.id.emergency_help_user_name);
             userStatus = itemView.findViewById(R.id.statusId);
             aSwitch = itemView.findViewById(R.id.activity_user_apdater_location_switch);
 

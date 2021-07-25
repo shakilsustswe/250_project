@@ -36,7 +36,7 @@
             app:civ_border_width="2dp" />
 
         <EditText
-            android:id="@+id/usernameId"
+            android:id="@+id/emergency_help_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/edit_text"

@@ -1,23 +1,16 @@
 package com.shakilsustswe.locationtracker;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -81,7 +74,7 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
             super(itemView);
 
             userImage = itemView.findViewById(R.id.userImageId);
-            userName = itemView.findViewById(R.id.usernameId);
+            userName = itemView.findViewById(R.id.emergency_help_user_name);
             userStatus = itemView.findViewById(R.id.statusId);
 
         }

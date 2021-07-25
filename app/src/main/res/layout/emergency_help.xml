@@ -6,14 +6,13 @@
     android:layout_margin="4dp"
     android:background="@drawable/common_google_signin_btn_icon_light_normal_background">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/userImageId"
+            android:id="@+id/emergency_help_user_image_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
@@ -31,7 +30,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/emergency_help_user_name"
+                android:id="@+id/emergency_help_user_name_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -40,7 +39,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/statusId"
+                android:id="@+id/emergency_help_user_status_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -51,12 +50,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <Switch
-        android:id="@+id/activity_user_apdater_location_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
-
-
 </RelativeLayout>
