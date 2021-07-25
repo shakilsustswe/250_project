@@ -117,6 +117,8 @@ public class MessageActivity extends AppCompatActivity {
                     messagesArrayList.add(messages);
                 }
                 adater.notifyDataSetChanged();
+                messageAdater.smoothScrollToPosition(adater.getItemCount());  // automatic scrollable
+
             }
 
             @Override
@@ -159,6 +161,7 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 }
