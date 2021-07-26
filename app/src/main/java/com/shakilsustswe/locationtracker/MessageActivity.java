@@ -5,10 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +42,9 @@ public class MessageActivity extends AppCompatActivity {
     public static String sImage;
     public static String rImage;
 
+    private LinearLayout linearLayout;
+    private RecyclerView recyclerView;
+
     ///CardView sendBtn,editcardView;
     EditText edtMessage;
     ImageView sendBtn;
@@ -49,7 +57,17 @@ public class MessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
-
+        ActionBar actionBar = getActionBar();
+        getSupportActionBar().setTitle("Chat");
+        /////chat activity shareprefarence
+        linearLayout=findViewById(R.id.ll1);
+        recyclerView=findViewById(R.id.messageAdater);
+        if(loadcolor()!=getResources().getColor(R.color.colorPrimary))
+        {
+            linearLayout.setBackgroundColor(loadcolor());
+            recyclerView.setBackgroundColor(loadcolor());
+        }
+        ////////////
         database = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -71,12 +89,11 @@ public class MessageActivity extends AppCompatActivity {
         messageAdater.setLayoutManager(linearLayoutManager);
         messageAdater.setAdapter(adater);
 
-
         sendBtn=findViewById(R.id.sentBtn);
         edtMessage=findViewById(R.id.edtMessage);
 
         Picasso.get().load(reciverImage).into(ReciverImage);
-        ReciverName.setText("" + reciverName);
+        ReciverName.setText(""+ reciverName);
 
         senderUid= firebaseAuth.getUid();
 
@@ -164,5 +181,47 @@ public class MessageActivity extends AppCompatActivity {
 
 
         ///
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.chat_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.WhitecolormenuId)
+        {
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.white));
+            recyclerView.setBackgroundColor(getResources().getColor(R.color.white));
+            storeColor(getResources().getColor(R.color.white));
+        }
+        if(item.getItemId()==R.id.blackcolormenuId)
+        {
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.black));
+            recyclerView.setBackgroundColor(getResources().getColor(R.color.black));
+            storeColor(getResources().getColor(R.color.black));        }
+        if(item.getItemId()==R.id.tealcolormenuId)
+        {
+
+            linearLayout.setBackgroundColor(getResources().getColor(R.color.teal_700));
+            recyclerView.setBackgroundColor(getResources().getColor(R.color.teal_700));
+            storeColor(getResources().getColor(R.color.teal_700));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private  void storeColor(int color)
+    {
+        SharedPreferences sharedPreferences= getSharedPreferences("background",MODE_PRIVATE);
+        SharedPreferences.Editor editor= sharedPreferences.edit();
+        editor.putInt("myColor",color);
+        editor.commit();
+    }
+    private  int loadcolor()
+    {
+        SharedPreferences sharedPreferences= getSharedPreferences("background",MODE_PRIVATE);
+        int selectcolor= sharedPreferences.getInt("myColor",getResources().getColor(R.color.colorPrimary));
+        return selectcolor;
+
+
     }
 }

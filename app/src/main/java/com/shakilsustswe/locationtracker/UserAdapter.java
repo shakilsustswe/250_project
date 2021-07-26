@@ -48,10 +48,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.usersArrayList = usersArrayList;
     }
 
-    public UserAdapter(Friendlist mainActivity, ArrayList<Users> usersArrayList) {
+   /* public UserAdapter(Friendlist mainActivity, ArrayList<Users> usersArrayList) {
         this.mainActivity = mainActivity;
         this.usersArrayList = usersArrayList;
-    }
+    }*/
 
     @NonNull
     @Override
@@ -127,7 +127,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
         }
     }
-
     // interface, writer fahim
     public interface onAdapterInteractionListener{
         void onItemClick(String uid);

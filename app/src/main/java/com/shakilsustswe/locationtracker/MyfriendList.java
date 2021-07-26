@@ -1,7 +1,6 @@
 package com.shakilsustswe.locationtracker;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +38,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.shakilsustswe.locationtracker.FindFriendAdapter;
+import com.shakilsustswe.locationtracker.R;
+import com.shakilsustswe.locationtracker.Users;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -98,34 +100,34 @@ public class MyfriendList extends AppCompatActivity {
 
 
         builder.setMessage("Are you sure to unfriend this contract ??")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //addFriendList(uid, name, imageUri, status, email);
-                            databaseReference = FirebaseDatabase.getInstance().getReference("FriendsList").child(firebaseUser.getUid()).child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Snackbar snackbar = Snackbar
-                                                .make(rootLayout, "Unfriend successfully", Snackbar.LENGTH_LONG);
-                                        snackbar.show();
-                                    }
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //addFriendList(uid, name, imageUri, status, email);
+                        databaseReference = FirebaseDatabase.getInstance().getReference("FriendsList").child(firebaseUser.getUid()).child(uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Snackbar snackbar = Snackbar
+                                            .make(rootLayout, "Unfriend successfully", Snackbar.LENGTH_LONG);
+                                    snackbar.show();
                                 }
-                            });
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            //  Action for 'NO' Button
-                            dialog.cancel();
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
 
-                        }
-                    });
-            //Creating dialog box
-            AlertDialog alert = builder.create();
-            //Setting the title manually
-            alert.setTitle("Add " + name + "?");
-            alert.show();
+                    }
+                });
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+        //Setting the title manually
+        alert.setTitle("Add " + name + "?");
+        alert.show();
     }
 
 

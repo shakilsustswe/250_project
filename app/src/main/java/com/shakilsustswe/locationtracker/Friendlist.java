@@ -42,7 +42,7 @@ public class Friendlist extends AppCompatActivity {
 
         usersArrayList = new ArrayList<>();
 
-        userAdapter = new UserAdapter(Friendlist.this, usersArrayList);
+        //userAdapter = new UserAdapter(Friendlist.this, usersArrayList);
 
         databaseReference = firebaseDatabase.getReference().child("FriendsList");
 
@@ -68,7 +68,7 @@ public class Friendlist extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //userAdapter = new UserAdapter(Alluserslist.this, usersArrayList);
         recyclerView.setAdapter(userAdapter);
-        setTitle("All Users");
+        setTitle("Friends");
 
 
 

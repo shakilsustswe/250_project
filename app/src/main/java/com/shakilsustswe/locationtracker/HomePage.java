@@ -6,28 +6,44 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class HomePage extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
+    private  FindFriendAdapter adapter;
     private AlertDialog.Builder builder;
     private AlertDialog.Builder popupwindow;
     private AlertDialog shearloc;
+    ArrayList<String> arrayList;
+    RecyclerView recycleview;
+    RelativeLayout rootLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+
         mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+
         BottomNavigationView bottomNav = findViewById(R.id.home_page_navigationbar);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -35,6 +51,19 @@ public class HomePage extends AppCompatActivity {
             startActivity(new Intent(this, Login.class));
             finish();
         }
+
+        recycleview=(RecyclerView)findViewById(R.id.recycularViewId);
+       /// rootLayout = findViewById(R.id.activity_find_friend_rootLayout);
+        recycleview.setLayoutManager(new LinearLayoutManager(this));
+
+        FirebaseRecyclerOptions<Users> options =
+                new FirebaseRecyclerOptions.Builder<Users>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("FriendsList").child(firebaseUser.getUid()), Users.class)
+                        .build();
+
+        adapter=new FindFriendAdapter(options);
+        recycleview.setAdapter(adapter);
+        arrayList = new ArrayList<>();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.home_page_frame, new HomeScreen()).commit();
 
@@ -100,6 +129,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     private void findFriend() {
+
         startActivity(new Intent(getApplicationContext(),FindFriendActivity.class));
     }
     private void Messageing()
