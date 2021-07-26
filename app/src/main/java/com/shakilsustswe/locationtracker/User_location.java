@@ -395,6 +395,7 @@ public class User_location extends Fragment implements
         if(!TextUtils.isEmpty(address)){
             secDirection.setVisibility(View.VISIBLE);
             Toast.makeText(getContext(), "Tap to conner see the direction road map", Toast.LENGTH_SHORT).show();
+
             Geocoder geocoder = new Geocoder(getContext());
             try{
                 addressList = geocoder.getFromLocationName(address, 6);

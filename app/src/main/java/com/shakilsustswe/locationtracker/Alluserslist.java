@@ -31,7 +31,6 @@ public class Alluserslist extends AppCompatActivity {
 
         auth=FirebaseAuth.getInstance();
         firebaseDatabase=FirebaseDatabase.getInstance();
-
         usersArrayList = new ArrayList<>();
 
        userAdapter = new UserAdapter(Alluserslist.this, usersArrayList, false);

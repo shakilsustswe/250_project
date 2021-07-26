@@ -54,6 +54,7 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
             }
         });
 
+
     }
 
     @NonNull
@@ -91,6 +92,8 @@ public class FindFriendAdapter extends FirebaseRecyclerAdapter<Users,FindFriendA
     // interface, writer fahim
     public interface onAdapterInteractionListener{
         void onItemClick(String uid, String name,String imageUri,String status,String email);
+
+       /// void onItemClick();
     }
 
 

@@ -99,7 +99,6 @@
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
         android:layout_below="@id/fragment_user_location_maptype"
         android:layout_above="@id/fragment_container_item"
         android:id="@+id/map"

@@ -21,7 +21,8 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_baseline_person_outline_24"
             app:civ_border_color="#7e47f5"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="2dp"
+            />
 
         <TextView
             android:id="@+id/reciverName"
@@ -47,34 +48,34 @@
         android:layout_marginBottom="4dp" />
 
     <LinearLayout
-
         android:id="@+id/ll3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_margin="2dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#757575"
+        >
 
         <EditText
             android:id="@+id/edtMessage"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="310dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_margin="7dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:background="@drawable/message_box"
             android:fontFamily="@font/spartan_regular"
             android:hint="Type Your Messages..."
             android:padding="10dp"
             android:paddingStart="10dp"
-            android:textSize="20sp" />
+            android:textSize="15sp"
+            />
 
         <ImageView
             android:id="@+id/sentBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_gravity="center|center_vertical"
-            android:layout_marginTop="7dp"
+            android:layout_gravity="center"
             android:layout_weight="4"
             android:src="@drawable/ic_baseline_send_24" />
 
