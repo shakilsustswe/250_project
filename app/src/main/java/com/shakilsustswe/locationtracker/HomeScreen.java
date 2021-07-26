@@ -42,6 +42,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 
 public class HomeScreen extends Fragment implements View.OnClickListener,
@@ -133,7 +135,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
         try{
             request = new LocationRequest();
             request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-            request.setInterval(100);
+            request.setInterval(600);
 
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -162,15 +164,20 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
         helper.setLatitude(location.getLatitude());
         helper.setUid(user.getUid());
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Location").child(user.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("email", helper.getEmail());
+        hashMap.put("name", helper.getName());
+        hashMap.put("latitude", String.valueOf(location.getLatitude()));
+        hashMap.put("longitude", String.valueOf(location.getLongitude()));
+        hashMap.put("status", helper.getStatus());
+        hashMap.put("uid", helper.getUid());
+        hashMap.put("imageUri", helper.getImageUri());
+
+
+        reference = FirebaseDatabase.getInstance().getReference().child("Location").child(user.getUid()).updateChildren(Collections.unmodifiableMap(hashMap)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                if(task.isSuccessful()){
 
-                }
-                else{
-
-                }
             }
         });
 
