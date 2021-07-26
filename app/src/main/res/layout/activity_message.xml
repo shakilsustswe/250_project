@@ -7,6 +7,12 @@
     android:visibility="visible"
     tools:context=".MessageActivity">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="match_parent"

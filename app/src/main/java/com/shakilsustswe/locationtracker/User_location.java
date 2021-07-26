@@ -126,11 +126,6 @@ public class User_location extends Fragment implements
             mMap.setBuildingsEnabled(true);
 
 
-
-
-
-
-            //Initialize Google Play Services
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION)
@@ -274,17 +269,6 @@ public class User_location extends Fragment implements
     @Override
     public void onLocationChanged(@NonNull Location location) {
         lastLocation = location;
-
-        LocationHelper helper = new LocationHelper();
-        helper.setName("name");
-        helper.setLatitude(location.getLatitude());
-        helper.setLongitude(location.getLongitude());
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Location").child(firebaseUser.getUid()).setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull @NotNull Task<Void> task) {
-
-            }
-        });
 
         if(currentUserLocationMarker != null){
             currentUserLocationMarker.remove();

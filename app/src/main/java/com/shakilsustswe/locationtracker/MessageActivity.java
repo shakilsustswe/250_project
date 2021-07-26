@@ -187,6 +187,7 @@ public class MessageActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.chat_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.WhitecolormenuId)
@@ -221,7 +222,6 @@ public class MessageActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences= getSharedPreferences("background",MODE_PRIVATE);
         int selectcolor= sharedPreferences.getInt("myColor",getResources().getColor(R.color.colorPrimary));
         return selectcolor;
-
 
     }
 }

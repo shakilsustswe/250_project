@@ -39,7 +39,6 @@
         <activity
             android:name=".ShowLocation"
             android:label="@string/title_activity_show_location" />
-        <activity android:name=".FriendsAdapter" />
         <activity
             android:name=".AboutThis"
             android:parentActivityName=".HomePage" />

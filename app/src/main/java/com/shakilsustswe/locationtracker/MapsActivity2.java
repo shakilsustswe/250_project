@@ -19,6 +19,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -106,6 +107,7 @@ public class MapsActivity2 extends FragmentActivity implements
 
     double a = 10, b = 10;
     private Spinner map_type;
+    private boolean haveAccess = true;
 
 
     @Override
@@ -136,8 +138,9 @@ public class MapsActivity2 extends FragmentActivity implements
         Intent intent = getIntent();
         String message = intent.getStringExtra("uid");
 
+
         if(message != null)
-            showLocation(message);
+            run(message);
         else{
             Snackbar snackbar = Snackbar
                     .make(rootLayout, "Having same networking problem", Snackbar.LENGTH_LONG);
@@ -152,6 +155,19 @@ public class MapsActivity2 extends FragmentActivity implements
             }
         });
 
+    }
+
+    private void run(String uid){
+        Handler handler = new Handler();
+
+        final Runnable r = new Runnable() {
+            public void run() {
+                checkHavePermission(uid);
+                handler.postDelayed(this, 1000);
+            }
+        };
+
+        handler.postDelayed(r, 5000);
     }
 
     private void showLocation(String uid) {
@@ -169,7 +185,6 @@ public class MapsActivity2 extends FragmentActivity implements
                     textViewOthers.setText(name+ " : " +lat +" , " +log);
                     try{
                         path = lat+","+log;
-                        Toast.makeText(getApplicationContext(), path.toString(), Toast.LENGTH_SHORT).show();
                     }
                     catch (Exception e){
 
@@ -424,6 +439,35 @@ public class MapsActivity2 extends FragmentActivity implements
         catch (Exception e){
 
         }
+    }
+
+    private void checkHavePermission(String uid){
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("ShareLocation").child(FirebaseAuth.getInstance().getUid());
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(uid)){
+                    showLocation(uid);
+//                    Snackbar snackbar = Snackbar
+//                            .make(rootLayout, "ON", Snackbar.LENGTH_LONG);
+//                    snackbar.show();
+                }
+                else{
+                    Snackbar snackbar = Snackbar
+                            .make(rootLayout, "Sorry, User Turn off her live location to you", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 }
