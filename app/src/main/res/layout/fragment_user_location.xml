@@ -65,24 +65,30 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/fragment_user_location_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:backgroundTint="@color/ic_launcher_background"
             android:text="School" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/fragment_user_location_restaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:backgroundTint="@color/ic_launcher_background"
             android:text="Restaurant" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/fragment_user_location_hospital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+            android:backgroundTint="@color/ic_launcher_background"
             android:text="hospital" />
 
         <ImageButton

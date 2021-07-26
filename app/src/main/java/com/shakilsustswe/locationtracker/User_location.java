@@ -17,6 +17,7 @@ import android.location.Geocoder;
 import android.location.Location;
 
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -93,7 +95,12 @@ public class User_location extends Fragment implements
     private Task<Void> firebaseDatabase;
     private FirebaseAuth mAuth;
     private Task<Void> databaseReference;
+    private String Search_location = null;
 
+    private Button secRes;
+    private Button search_res;
+    private Button search_school;
+    private Button search_hostipal;
 
 
     Spinner map_type;
@@ -156,6 +163,9 @@ public class User_location extends Fragment implements
         addressField = v.findViewById(R.id.fragment_user_location_searchingEditTxt);
         searchingBtn = v.findViewById(R.id.fragment_user_location_searchingBtn);
         secDirection = v.findViewById(R.id.fragment_user_locationDirectionBtn);
+        search_hostipal = v.findViewById(R.id.fragment_user_location_hospital);
+        search_res = v.findViewById(R.id.fragment_user_location_restaurant);
+        search_school = v.findViewById(R.id.fragment_user_location_school);
 
         map_type = v.findViewById(R.id.fragment_user_location_maptype);
 
@@ -207,8 +217,36 @@ public class User_location extends Fragment implements
         secDirection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(Search_location != null)
+                    DisplayDirection();
             }
         });
+
+
+        statusCheck();
+
+        search_hostipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DisplayNearestHospital();
+            }
+        });
+
+        search_res.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DisplayNearestRestaurants();
+            }
+        });
+
+
+        search_school.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DisplayDesNearesSchool();
+            }
+        });
+
 
         return v;
     }
@@ -403,9 +441,11 @@ public class User_location extends Fragment implements
                         Address userAddress = addressList.get(i);
 
                         LatLng latLng = new LatLng(userAddress.getLatitude(), userAddress.getLongitude());
+                        Search_location = String.valueOf(latLng.latitude + ","+latLng.longitude);
                         userMarkerOptions.position(latLng);
                         userMarkerOptions.title(address);
                         userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+
 
                         mMap.clear();
                         mMap.addMarker(userMarkerOptions);

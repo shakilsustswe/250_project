@@ -20,9 +20,15 @@ public class SplashScreen extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/
-        new Handler().postDelayed(new Runnable(){
+
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        Button buttonRequest = findViewById(R.id.activity_splash_screen_location_permission);
+
+        statusCheck();
+        fetchLocation();
+        buttonRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */

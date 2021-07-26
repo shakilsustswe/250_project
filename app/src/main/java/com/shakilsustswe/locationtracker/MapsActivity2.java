@@ -10,16 +10,20 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +42,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -48,13 +53,25 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsLeg;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.DirectionsStep;
+import com.google.maps.model.EncodedPolyline;
 import com.shakilsustswe.locationtracker.databinding.ActivityMaps2Binding;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.http.Url;
+
 
 public class MapsActivity2 extends FragmentActivity implements
         OnMapReadyCallback,
@@ -62,6 +79,7 @@ public class MapsActivity2 extends FragmentActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener
 {
+
 
     private RelativeLayout rootLayout;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -80,8 +98,9 @@ public class MapsActivity2 extends FragmentActivity implements
 
     private Intent i;
     private String user_name;
-    private double latitude;
-    private double longitude;
+    String path;
+
+    private Button secDirection;
 
     private TextView textViewYou, textViewOthers;
 
@@ -109,7 +128,7 @@ public class MapsActivity2 extends FragmentActivity implements
         rootLayout = findViewById(R.id.activity_maps2_root_layout);
         textViewOthers = findViewById(R.id.activity_map_2_text_others);
         textViewYou = findViewById(R.id.activity_map_2_text_you);
-
+        secDirection = findViewById(R.id.activity_map_2_see_direction);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
@@ -126,36 +145,54 @@ public class MapsActivity2 extends FragmentActivity implements
         }
         mapType();
 
+        secDirection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DisplayDirection();
+            }
+        });
+
     }
 
     private void showLocation(String uid) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Location").child(uid);
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String name = snapshot.child("name").getValue().toString();
-                String  lat = snapshot.child("latitude").getValue().toString();
-                String log = snapshot.child("longitude").getValue().toString();
+                try {
+                    String name = snapshot.child("name").getValue().toString();
+                    String  lat = snapshot.child("latitude").getValue().toString();
+                    String log = snapshot.child("longitude").getValue().toString();
 
-                if(name == null){
-                    name = "name";
+                    double a= Double.parseDouble(lat);
+                    double b= Double.parseDouble(log);
+                    textViewOthers.setText(name+ " : " +lat +" , " +log);
+                    try{
+                        path = lat+","+log;
+                        Toast.makeText(getApplicationContext(), path.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                    catch (Exception e){
+
+                    }
+
+
+                    mMap.clear();
+                    MarkerOptions userMarkerOptions = new MarkerOptions();
+                    LatLng latLng = new LatLng(a,b);
+                    userMarkerOptions.position(latLng);
+                    userMarkerOptions.title(name);
+                    userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+                    mMap.addMarker(userMarkerOptions);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
                 }
-                double a= Double.parseDouble(lat);
-                double b= Double.parseDouble(log);
+                catch (Exception e){
 
-                textViewOthers.setText(name+ " : " +lat +" , " +log);
+                }
 
-                mMap.clear();
-                MarkerOptions userMarkerOptions = new MarkerOptions();
-                LatLng latLng = new LatLng(a,b);
-                userMarkerOptions.position(latLng);
-                userMarkerOptions.title(name);
-                userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
 
-                mMap.addMarker(userMarkerOptions);
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+
 
             }
 
@@ -186,9 +223,6 @@ public class MapsActivity2 extends FragmentActivity implements
         mMap.setIndoorEnabled(true);
         mMap.setBuildingsEnabled(true);
 
-
-
-        //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
@@ -200,6 +234,7 @@ public class MapsActivity2 extends FragmentActivity implements
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
+
     }
 
 
@@ -378,4 +413,17 @@ public class MapsActivity2 extends FragmentActivity implements
                 .build();
         googleApiClient.connect();
     }
+
+    private void DisplayDirection(){
+        try{
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.parse("google.navigation:q="+path);
+            i.setData(uri);
+            startActivity(i);
+        }
+        catch (Exception e){
+
+        }
+    }
+
 }

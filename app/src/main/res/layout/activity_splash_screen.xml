@@ -6,22 +6,35 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:layout_gravity="center"
-    android:background="@mipmap/loc"
+    android:background="@color/ic_launcher_background"
     tools:context=".SplashScreen">
 
-    <TextView
+    <Button
+        android:id="@+id/activity_splash_screen_location_permission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get's Start..."
+        android:layout_marginBottom="140dp"
+        android:text="এখানে চাপুন"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/spartan_regular"
+        android:text="Get's Start..."
         android:textColor="#13E61C"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907">
+        app:layout_constraintVertical_bias="0.857">
 
     </TextView>
 

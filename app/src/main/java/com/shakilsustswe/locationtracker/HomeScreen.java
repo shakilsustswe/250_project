@@ -3,25 +3,19 @@ package com.shakilsustswe.locationtracker;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Intent;
+
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
+
 import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.CompoundButton;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,8 +29,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,8 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
+
 
 import org.jetbrains.annotations.NotNull;
 
@@ -120,8 +112,6 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
 
 
 
-
-    /*Enable options menu in this fragment*/
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +133,7 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
         try{
             request = new LocationRequest();
             request.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-            request.setInterval(600);
+            request.setInterval(100);
 
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
@@ -242,25 +232,25 @@ public class HomeScreen extends Fragment implements View.OnClickListener,
 
     private void user_info() {
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(auth.getUid());
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    email = snapshot.child("email").getValue().toString();
-                    name = snapshot.child("name").getValue().toString();
-                    status = snapshot.child("status").getValue().toString();
-                    image = snapshot.child("imageUri").getValue().toString();
-                    helper.setName(name);
-                    helper.setEmail(email);
-                    helper.setImageUri(image);
-                    helper.setStatus(status);
-                }
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User").child(auth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                email = snapshot.child("email").getValue().toString();
+                name = snapshot.child("name").getValue().toString();
+                status = snapshot.child("status").getValue().toString();
+                image = snapshot.child("imageUri").getValue().toString();
+                helper.setName(name);
+                helper.setEmail(email);
+                helper.setImageUri(image);
+                helper.setStatus(status);
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
+            }
+        });
 
     }
 

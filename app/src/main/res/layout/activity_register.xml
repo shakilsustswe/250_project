@@ -15,6 +15,7 @@
         android:orientation="vertical"
         android:padding="15dp">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,11 +26,10 @@
 
         </TextView>
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_imageId"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="229dp"
+            android:layout_height="130dp"
             android:layout_margin="10dp"
             android:src="@drawable/ic_baseline_person_outline_24"
             app:civ_border_color="#FF000000"
@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/edit_text"
+            android:gravity="center"
             android:hint="Name"
             android:inputType="textPersonName"
             android:textCursorDrawable="@null"
@@ -52,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/edit_text"
+            android:gravity="center"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@null"
@@ -64,7 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/edit_text"
-            android:hint="password"
+            android:gravity="center"
+            android:hint="Password"
             android:inputType="textPassword"
             android:textCursorDrawable="@null"
             android:textStyle="bold">
@@ -76,7 +79,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:drawable/edit_text"
-            android:hint=" Conferm password"
+            android:gravity="center"
+            android:hint="Contram password"
             android:inputType="textPassword"
             android:textCursorDrawable="@null"
             android:textStyle="bold">
@@ -106,7 +110,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I have a account." />
+            android:text="Allready have an account ?" />
 
         <TextView
             android:id="@+id/signInTextId"
@@ -114,7 +118,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Sign in"
-            android:textSize="20sp" />
+            android:textColor="#40C111"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

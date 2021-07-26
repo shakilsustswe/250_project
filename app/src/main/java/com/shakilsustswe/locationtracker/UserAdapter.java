@@ -3,6 +3,7 @@ package com.shakilsustswe.locationtracker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
@@ -88,7 +90,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked) onAdapterInteractionListener.onItemClick(users.getUid().toString());
                     else{
-                        Task<Void> ref = FirebaseDatabase.getInstance().getReference().child("Location").child(users.getUid()).child(FirebaseAuth.getInstance().getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        Task<Void> ref = FirebaseDatabase.getInstance().getReference().child("ShareLocation").child(users.getUid()).child(FirebaseAuth.getInstance().getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
 
