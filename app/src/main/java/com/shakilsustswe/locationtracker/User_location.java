@@ -7,7 +7,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -453,6 +455,87 @@ public class User_location extends Fragment implements
             Toast.makeText(getContext(), "Please enter a location name", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void statusCheck() {
+        final LocationManager manager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        statusCheck();
+    }
+
+    private void DisplayDirection(){
+        try{
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.parse("google.navigation:q="+Search_location);
+            i.setData(uri);
+            startActivity(i);
+        }
+        catch (Exception e){
+
+        }
+    }
+
+    private void DisplayNearestRestaurants(){
+        try{
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        }
+        catch (Exception e){
+
+        }
+    }
+
+    private void DisplayNearestHospital(){
+        try{
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=hospitals");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        }
+        catch (Exception e){
+
+        }
+    }
+
+    private void DisplayDesNearesSchool(){
+        try{
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=schools");
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        }
+        catch (Exception e){
+
+        }
+    }
+
 
 }
 
